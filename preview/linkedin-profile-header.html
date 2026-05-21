@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ahmed A. Al-Ghamdi — IT Infrastructure Specialist at the National Transport Safety Center (NTSC) in Riyadh. Microsoft 365, Azure, cybersecurity, ITIL, ServiceNow, PMP, CEH.">
+  <meta name="theme-color" content="#0A2625">
   <title>Ahmed A. Al-Ghamdi — IT Infrastructure Specialist · NTSC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,11 +130,16 @@
     .photo:hover .upload-hint,
     .photo:focus-within .upload-hint { opacity: 1; }
 
+    .photo:focus-within {
+      outline-color: var(--ring);
+      outline-offset: 4px;
+    }
+
     .photo .initials {
       font-size: 3.5rem;
       font-weight: 700;
       letter-spacing: 0.04em;
-      text-shadow: 0 2px 8px rgba(11, 44, 43, 0.25);
+      text-shadow: 0 2px 8px rgba(10, 38, 37, 0.25);
     }
 
     .photo img {
@@ -163,8 +170,8 @@
       color: var(--brand);
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(0, 108, 53, 0.08);
-      border: 1px solid rgba(0, 108, 53, 0.18);
+      background: rgba(31, 93, 90, 0.08);
+      border: 1px solid rgba(31, 93, 90, 0.18);
       width: fit-content;
       margin-bottom: 6px;
       letter-spacing: 0.02em;
@@ -176,7 +183,7 @@
       height: 6px;
       border-radius: 50%;
       background: var(--brand-light);
-      box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.25);
+      box-shadow: 0 0 0 3px rgba(46, 140, 134, 0.25);
     }
 
     .name {
@@ -203,8 +210,7 @@
       color: var(--text);
       margin-top: 8px;
       max-width: 72ch;
-      overflow-wrap: anywhere;
-      word-break: normal;
+      overflow-wrap: break-word;
     }
 
     .headline .sep {
@@ -266,7 +272,7 @@
     .url:hover {
       color: var(--text);
       border-color: var(--ring);
-      background: rgba(0, 108, 53, 0.06);
+      background: rgba(31, 93, 90, 0.06);
       transform: translateY(-1px);
     }
 
@@ -313,6 +319,39 @@
       }
       .banner {
         height: 130px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .url, .location {
+        transition: none;
+      }
+      .url:hover {
+        transform: none;
+      }
+      .photo .upload-hint {
+        transition: none;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      .profile-header {
+        border: none;
+        box-shadow: none;
+      }
+      .banner {
+        height: 80px;
+      }
+      .photo {
+        box-shadow: none;
+        outline: 1px solid var(--border);
+      }
+      .url, .location {
+        border-color: var(--border);
       }
     }
   </style>

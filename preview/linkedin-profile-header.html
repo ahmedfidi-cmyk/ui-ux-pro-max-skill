@@ -58,9 +58,9 @@
     .banner {
       height: 200px;
       background:
-        radial-gradient(800px 400px at 15% 10%, rgba(46, 140, 134, 0.18), transparent 55%),
-        radial-gradient(600px 400px at 95% 90%, rgba(111, 227, 207, 0.10), transparent 60%),
-        linear-gradient(135deg, var(--brand-deep) 0%, var(--brand-dark) 60%, var(--brand) 100%);
+        radial-gradient(800px 400px at 15% 10%, rgba(46, 140, 134, 0.14), transparent 55%),
+        radial-gradient(600px 400px at 95% 90%, rgba(111, 227, 207, 0.06), transparent 60%),
+        linear-gradient(135deg, #04110F 0%, #0A2422 55%, #133A37 100%);
       position: relative;
       overflow: hidden;
     }
@@ -98,7 +98,35 @@
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
     }
+
+    .photo .upload-hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #fff;
+      background: rgba(10, 38, 37, 0.55);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .photo .upload-hint svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+      fill: none;
+    }
+
+    .photo:hover .upload-hint,
+    .photo:focus-within .upload-hint { opacity: 1; }
 
     .photo .initials {
       font-size: 3.5rem;
@@ -387,11 +415,15 @@
     </div>
 
     <div class="content">
-      <div class="photo" role="img" aria-label="Profile photo of Ahmed A. Al-Ghamdi">
+      <label class="photo" aria-label="Upload profile photo">
         <span class="initials" aria-hidden="true">AG</span>
-        <!-- Drop profile.jpg next to this HTML to override the initials with a real photo -->
-        <img src="profile.jpg" alt="Ahmed A. Al-Ghamdi" onerror="this.remove();">
-      </div>
+        <img id="profile-img" src="profile.jpg" alt="Ahmed A. Al-Ghamdi" onerror="this.remove();">
+        <span class="upload-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Upload photo
+        </span>
+        <input id="profile-input" type="file" accept="image/*" hidden>
+      </label>
 
       <div class="info">
         <span class="badge">Open to opportunities</span>
@@ -430,5 +462,24 @@
       </div>
     </div>
   </article>
+
+  <script>
+    (() => {
+      const input = document.getElementById('profile-input');
+      const photo = document.querySelector('.photo');
+      input.addEventListener('change', () => {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        let img = document.getElementById('profile-img');
+        if (!img) {
+          img = document.createElement('img');
+          img.id = 'profile-img';
+          img.alt = 'Ahmed A. Al-Ghamdi';
+          photo.insertBefore(img, photo.querySelector('.upload-hint'));
+        }
+        img.src = URL.createObjectURL(file);
+      });
+    })();
+  </script>
 </body>
 </html>

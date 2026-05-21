@@ -178,29 +178,19 @@
     }
 
     .headline {
-      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-size: clamp(0.95rem, 1.4vw, 1.0625rem);
       font-weight: 500;
-      line-height: 1.5;
+      line-height: 1.6;
       color: var(--text);
       margin-top: 8px;
-      max-width: 56ch;
+      max-width: 72ch;
     }
 
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .tag {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(0, 108, 53, 0.06);
-      border: 1px solid var(--border);
+    .headline .sep {
+      color: var(--brand-light);
+      font-weight: 400;
+      margin: 0 4px;
+      opacity: 0.7;
     }
 
     .org-line {
@@ -299,9 +289,6 @@
         max-width: 100%;
         text-align: center;
       }
-      .tags {
-        justify-content: center;
-      }
       .banner {
         height: 130px;
       }
@@ -325,15 +312,14 @@
         <p class="title">IT Infrastructure Specialist</p>
 
         <p class="headline">
-          Driving IT infrastructure transformation in support of Saudi Vision 2030 and the Kingdom's transport safety agenda.
+          IT Infrastructure Specialist
+          <span class="sep">|</span> Microsoft 365 &amp; Azure
+          <span class="sep">|</span> Cybersecurity &amp; Compliance
+          <span class="sep">|</span> ITIL &amp; ServiceNow
+          <span class="sep">|</span> Digital Transformation
+          <span class="sep">|</span> PMP
+          <span class="sep">|</span> CEH
         </p>
-
-        <div class="tags" aria-label="Areas of expertise">
-          <span class="tag">Network &amp; Systems</span>
-          <span class="tag">Cloud Infrastructure</span>
-          <span class="tag">Cybersecurity</span>
-          <span class="tag">Vision 2030</span>
-        </div>
 
         <p class="org-line">
           <strong>National Transport Safety Center (NTSC)</strong>

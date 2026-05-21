@@ -3,50 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ahmef — IT Infrastructure Specialist · NTSC</title>
+  <title>Ahmed A. Al-Ghamdi — IT Infrastructure Specialist · NTSC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* NTSC brand-inspired palette */
+      /* NTSC brand palette */
       --brand: #1F5D5A;
       --brand-dark: #134341;
-      --brand-deep: #0B2C2B;
+      --brand-deep: #0A2625;
       --brand-light: #2E8C86;
-      --accent: #D4AF37;
+      --accent: #6FE3CF;
       --surface: #FFFFFF;
-      --surface-soft: #F7F9F8;
-      --text: #0B2C2B;
+      --surface-soft: #F6FAF9;
+      --text: #0A2625;
       --text-muted: #5C7B79;
       --border: rgba(31, 93, 90, 0.16);
       --ring: rgba(31, 93, 90, 0.45);
       --radius-card: 24px;
       --radius-photo: 50%;
-      --shadow-card: 0 24px 64px -16px rgba(11, 44, 43, 0.25), 0 4px 12px -2px rgba(11, 44, 43, 0.10);
-      --shadow-photo: 0 12px 32px -8px rgba(31, 93, 90, 0.45);
+      --shadow-card: 0 24px 64px -16px rgba(10, 38, 37, 0.30), 0 4px 12px -2px rgba(10, 38, 37, 0.12);
+      --shadow-photo: 0 12px 32px -8px rgba(31, 93, 90, 0.50);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; }
 
     body {
-      font-family: 'Inter', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(31, 93, 90, 0.10), transparent 60%),
         radial-gradient(900px 500px at 110% 110%, rgba(46, 140, 134, 0.10), transparent 55%),
         var(--surface-soft);
       color: var(--text);
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 48px 24px;
+      padding: 48px 16px;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
     .profile-header {
-      width: 100%;
-      max-width: 1100px;
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-card);
@@ -55,80 +54,28 @@
       position: relative;
     }
 
-    /* Banner with NTSC green + subtle palm-shield motif */
+    /* Tech-network banner in NTSC green */
     .banner {
-      height: 168px;
+      height: 200px;
       background:
-        linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 55%, var(--brand-light) 100%);
+        radial-gradient(800px 400px at 15% 10%, rgba(46, 140, 134, 0.14), transparent 55%),
+        radial-gradient(600px 400px at 95% 90%, rgba(111, 227, 207, 0.06), transparent 60%),
+        linear-gradient(135deg, #04110F 0%, #0A2422 55%, #133A37 100%);
       position: relative;
       overflow: hidden;
     }
 
-    .banner::before {
-      content: "";
+    .banner svg.tech {
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at 80% 20%, black 30%, transparent 75%);
-    }
-
-    .banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(420px 160px at 12% 100%, rgba(255,255,255,0.10), transparent 60%),
-        radial-gradient(360px 180px at 88% 0%, rgba(212, 175, 55, 0.18), transparent 60%);
-    }
-
-    /* NTSC corner badge */
-    .org-badge {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px 8px 8px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.35);
-      z-index: 2;
-    }
-    .org-badge .shield {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: var(--brand);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-    .org-badge .org-text {
-      line-height: 1.1;
-    }
-    .org-badge .org-en {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--brand);
-      letter-spacing: 0.04em;
-    }
-    .org-badge .org-ar {
-      font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      direction: rtl;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .content {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 36px;
       align-items: center;
       padding: 0 48px 40px;
@@ -140,32 +87,62 @@
       width: 168px;
       height: 168px;
       border-radius: var(--radius-photo);
-      background:
-        linear-gradient(135deg, rgba(46, 140, 134, 0.20), rgba(31, 93, 90, 0.30)),
-        var(--surface-soft);
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
       border: 4px solid var(--surface);
       outline: 2px solid var(--border);
       box-shadow: var(--shadow-photo);
       margin-top: -84px;
       display: grid;
       place-items: center;
-      color: var(--brand);
+      color: #fff;
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
+    }
+
+    .photo .upload-hint {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #fff;
+      background: rgba(10, 38, 37, 0.55);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .photo .upload-hint svg {
+      width: 22px;
+      height: 22px;
+      stroke: #fff;
+      fill: none;
+    }
+
+    .photo:hover .upload-hint,
+    .photo:focus-within .upload-hint { opacity: 1; }
+
+    .photo .initials {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px rgba(11, 44, 43, 0.25);
     }
 
     .photo img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center 25%;
       display: block;
-    }
-
-    .photo .placeholder {
-      width: 64px;
-      height: 64px;
-      opacity: 0.55;
     }
 
     .info {
@@ -174,6 +151,7 @@
       gap: 6px;
       padding-top: 12px;
       min-width: 0;
+      overflow-wrap: break-word;
     }
 
     .badge {
@@ -185,8 +163,8 @@
       color: var(--brand);
       padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(31, 93, 90, 0.08);
-      border: 1px solid rgba(31, 93, 90, 0.18);
+      background: rgba(0, 108, 53, 0.08);
+      border: 1px solid rgba(0, 108, 53, 0.18);
       width: fit-content;
       margin-bottom: 6px;
       letter-spacing: 0.02em;
@@ -198,24 +176,15 @@
       height: 6px;
       border-radius: 50%;
       background: var(--brand-light);
-      box-shadow: 0 0 0 3px rgba(46, 140, 134, 0.25);
+      box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.25);
     }
 
     .name {
-      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-size: clamp(1.6rem, 3.6vw, 2.5rem);
       font-weight: 800;
-      letter-spacing: 0.01em;
-      line-height: 1.05;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
       color: var(--text);
-    }
-
-    .name-ar {
-      font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
-      font-weight: 500;
-      color: var(--text-muted);
-      direction: rtl;
-      margin-top: 2px;
     }
 
     .title {
@@ -227,8 +196,27 @@
       margin-top: 10px;
     }
 
+    .headline {
+      font-size: clamp(0.9rem, 1.4vw, 1.0625rem);
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--text);
+      margin-top: 8px;
+      max-width: 72ch;
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .headline .sep {
+      color: var(--brand-light);
+      font-weight: 400;
+      margin: 0 4px;
+      opacity: 0.7;
+    }
+
     .org-line {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 8px;
       font-size: 0.95rem;
@@ -278,7 +266,7 @@
     .url:hover {
       color: var(--text);
       border-color: var(--ring);
-      background: rgba(31, 93, 90, 0.06);
+      background: rgba(0, 108, 53, 0.06);
       transform: translateY(-1px);
     }
 
@@ -298,7 +286,7 @@
 
     @media (max-width: 720px) {
       .content {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
         padding: 0 24px 32px;
         gap: 16px;
@@ -319,43 +307,138 @@
       .badge {
         margin: 0 auto 4px;
       }
+      .headline {
+        max-width: 100%;
+        text-align: center;
+      }
       .banner {
         height: 130px;
-      }
-      .org-badge {
-        top: 12px;
-        right: 12px;
-        padding: 6px 10px 6px 6px;
       }
     }
   </style>
 </head>
 <body>
-  <article class="profile-header" aria-label="Ahmef profile header">
+  <article class="profile-header" aria-label="Ahmed A. Al-Ghamdi profile header">
     <div class="banner" aria-hidden="true">
-      <div class="org-badge" aria-label="National Transport Safety Center">
-        <span class="shield">NT</span>
-        <span class="org-text">
-          <span class="org-en">NTSC</span><br>
-          <span class="org-ar">المركز الوطني لسلامة النقل</span>
-        </span>
-      </div>
+      <svg class="tech" viewBox="0 0 1100 200" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="dotGrid" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="4.5" cy="4.5" r="1.1" fill="rgba(195, 235, 225, 0.55)"/>
+          </pattern>
+          <clipPath id="globeClip">
+            <circle cx="920" cy="100" r="160"/>
+          </clipPath>
+          <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(111, 227, 207, 0.18)"/>
+            <stop offset="60%" stop-color="rgba(111, 227, 207, 0.05)"/>
+            <stop offset="100%" stop-color="rgba(111, 227, 207, 0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Circuit traces -->
+        <g fill="none" stroke="#5BC3BC" stroke-width="1" opacity="0.55">
+          <path d="M-20,28 L140,28 L140,48 L300,48 L300,62 L420,62"/>
+          <path d="M-20,68 L90,68 L90,90 L220,90 L220,108 L360,108"/>
+          <path d="M-20,108 L60,108 L60,138 L180,138 L180,158 L320,158"/>
+          <path d="M-20,148 L120,148 L120,172 L280,172"/>
+          <path d="M-20,180 L80,180 L80,200"/>
+          <path d="M380,30 L460,30 L460,55 L540,55"/>
+          <path d="M440,80 L520,80 L520,110 L620,110"/>
+          <path d="M400,140 L500,140 L500,165 L580,165"/>
+          <path d="M580,25 L660,25 L660,50 L740,50"/>
+        </g>
+
+        <!-- Trace node markers -->
+        <g fill="#6FE3CF" opacity="0.75">
+          <rect x="417" y="59" width="6" height="6" transform="rotate(45 420 62)"/>
+          <rect x="357" y="105" width="6" height="6" transform="rotate(45 360 108)"/>
+          <rect x="317" y="155" width="6" height="6" transform="rotate(45 320 158)"/>
+          <rect x="277" y="169" width="6" height="6" transform="rotate(45 280 172)"/>
+          <rect x="537" y="52" width="6" height="6" transform="rotate(45 540 55)"/>
+          <rect x="617" y="107" width="6" height="6" transform="rotate(45 620 110)"/>
+          <rect x="577" y="162" width="6" height="6" transform="rotate(45 580 165)"/>
+          <rect x="737" y="47" width="6" height="6" transform="rotate(45 740 50)"/>
+        </g>
+
+        <!-- Trace junction dots -->
+        <g fill="#5BC3BC" opacity="0.6">
+          <circle cx="140" cy="28" r="2"/>
+          <circle cx="300" cy="48" r="2"/>
+          <circle cx="90" cy="68" r="2"/>
+          <circle cx="220" cy="90" r="2"/>
+          <circle cx="60" cy="108" r="2"/>
+          <circle cx="180" cy="138" r="2"/>
+          <circle cx="120" cy="148" r="2"/>
+          <circle cx="460" cy="30" r="2"/>
+          <circle cx="520" cy="80" r="2"/>
+          <circle cx="500" cy="140" r="2"/>
+          <circle cx="660" cy="25" r="2"/>
+        </g>
+
+        <!-- Globe glow -->
+        <circle cx="920" cy="100" r="180" fill="url(#globeGlow)"/>
+
+        <!-- Sphere wireframe -->
+        <g transform="translate(920 100)" fill="none" stroke="#2E8C86" stroke-width="0.8" opacity="0.45">
+          <circle r="160"/>
+          <ellipse rx="160" ry="45"/>
+          <ellipse rx="160" ry="95"/>
+          <ellipse rx="160" ry="130"/>
+          <ellipse rx="45" ry="160"/>
+          <ellipse rx="95" ry="160"/>
+          <ellipse rx="130" ry="160"/>
+        </g>
+
+        <!-- Sphere dot grid -->
+        <rect x="760" y="-60" width="320" height="320" fill="url(#dotGrid)" clip-path="url(#globeClip)"/>
+
+        <!-- Highlight data nodes on globe -->
+        <g fill="#6FE3CF">
+          <circle cx="845" cy="55" r="2.5"/>
+          <circle cx="880" cy="40" r="2"/>
+          <circle cx="935" cy="48" r="3"/>
+          <circle cx="980" cy="70" r="2"/>
+          <circle cx="1010" cy="100" r="2.5"/>
+          <circle cx="990" cy="135" r="2"/>
+          <circle cx="940" cy="160" r="3"/>
+          <circle cx="880" cy="155" r="2"/>
+          <circle cx="830" cy="125" r="2.5"/>
+          <circle cx="820" cy="85" r="2"/>
+          <circle cx="900" cy="100" r="3.5"/>
+        </g>
+
+        <!-- Connection lines from circuit to globe -->
+        <g stroke="#5BC3BC" stroke-width="0.8" fill="none" opacity="0.35">
+          <path d="M740,50 L820,85"/>
+          <path d="M580,165 L830,125"/>
+        </g>
+      </svg>
     </div>
 
     <div class="content">
-      <div class="photo" role="img" aria-label="Profile photo of Ahmef">
-        <!-- Drop ahmef.jpg in this folder to use the real photo -->
-        <img src="ahmef.jpg" alt="Ahmef" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <svg class="placeholder" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none;">
-          <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9V22h19.6v-2.7c0-3.3-6.5-4.9-9.8-4.9z"/>
-        </svg>
-      </div>
+      <label class="photo" aria-label="Upload profile photo">
+        <span class="initials" aria-hidden="true">AG</span>
+        <img id="profile-img" src="profile.jpg" alt="Ahmed A. Al-Ghamdi" onerror="this.remove();">
+        <span class="upload-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Upload photo
+        </span>
+        <input id="profile-input" type="file" accept="image/*" hidden>
+      </label>
 
       <div class="info">
         <span class="badge">Open to opportunities</span>
-        <h1 class="name">Ahmef</h1>
-        <p class="name-ar">أحمف</p>
+        <h1 class="name">AHMED A. AL-GHAMDI</h1>
         <p class="title">IT Infrastructure Specialist</p>
+
+        <p class="headline">
+          Microsoft 365 &amp; Azure
+          <span class="sep">|</span> Cybersecurity &amp; Compliance
+          <span class="sep">|</span> ITIL &amp; ServiceNow
+          <span class="sep">|</span> Digital Transformation
+          <span class="sep">|</span> PMP
+          <span class="sep">|</span> CEH
+        </p>
 
         <p class="org-line">
           <strong>National Transport Safety Center (NTSC)</strong>
@@ -380,5 +463,24 @@
       </div>
     </div>
   </article>
+
+  <script>
+    (() => {
+      const input = document.getElementById('profile-input');
+      const photo = document.querySelector('.photo');
+      input.addEventListener('change', () => {
+        const file = input.files && input.files[0];
+        if (!file) return;
+        let img = document.getElementById('profile-img');
+        if (!img) {
+          img = document.createElement('img');
+          img.id = 'profile-img';
+          img.alt = 'Ahmed A. Al-Ghamdi';
+          photo.insertBefore(img, photo.querySelector('.upload-hint'));
+        }
+        img.src = URL.createObjectURL(file);
+      });
+    })();
+  </script>
 </body>
 </html>

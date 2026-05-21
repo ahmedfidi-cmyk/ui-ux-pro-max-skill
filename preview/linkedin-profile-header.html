@@ -98,32 +98,33 @@
       width: 168px;
       height: 168px;
       border-radius: var(--radius-photo);
-      background:
-        linear-gradient(135deg, rgba(46, 140, 134, 0.20), rgba(31, 93, 90, 0.30)),
-        var(--surface-soft);
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
       border: 4px solid var(--surface);
       outline: 2px solid var(--border);
       box-shadow: var(--shadow-photo);
       margin-top: -84px;
       display: grid;
       place-items: center;
-      color: var(--brand);
+      color: #fff;
       flex-shrink: 0;
       overflow: hidden;
       position: relative;
     }
 
+    .photo .initials {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px rgba(11, 44, 43, 0.25);
+    }
+
     .photo img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    .photo .placeholder {
-      width: 64px;
-      height: 64px;
-      opacity: 0.55;
     }
 
     .info {
@@ -174,6 +175,32 @@
       text-transform: uppercase;
       color: var(--brand);
       margin-top: 10px;
+    }
+
+    .headline {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      margin-top: 8px;
+      max-width: 56ch;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(31, 93, 90, 0.06);
+      border: 1px solid var(--border);
     }
 
     .org-line {
@@ -268,6 +295,13 @@
       .badge {
         margin: 0 auto 4px;
       }
+      .headline {
+        max-width: 100%;
+        text-align: center;
+      }
+      .tags {
+        justify-content: center;
+      }
       .banner {
         height: 130px;
       }
@@ -280,17 +314,26 @@
 
     <div class="content">
       <div class="photo" role="img" aria-label="Profile photo of Ahmed A. Al-Ghamdi">
-        <!-- Drop profile.jpg in this folder to use the real photo -->
-        <img src="profile.jpg" alt="Ahmed A. Al-Ghamdi" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-        <svg class="placeholder" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:none;">
-          <path d="M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.4c-3.3 0-9.8 1.6-9.8 4.9V22h19.6v-2.7c0-3.3-6.5-4.9-9.8-4.9z"/>
-        </svg>
+        <span class="initials" aria-hidden="true">AG</span>
+        <!-- Drop profile.jpg next to this HTML to override the initials with a real photo -->
+        <img src="profile.jpg" alt="Ahmed A. Al-Ghamdi" onerror="this.remove();">
       </div>
 
       <div class="info">
         <span class="badge">Open to opportunities</span>
         <h1 class="name">AHMED A. AL-GHAMDI</h1>
         <p class="title">IT Infrastructure Specialist</p>
+
+        <p class="headline">
+          Building resilient, secure IT infrastructure for Saudi Arabia's national transport safety mission.
+        </p>
+
+        <div class="tags" aria-label="Areas of expertise">
+          <span class="tag">Network &amp; Systems</span>
+          <span class="tag">Cloud Infrastructure</span>
+          <span class="tag">Cybersecurity</span>
+          <span class="tag">Vision 2030</span>
+        </div>
 
         <p class="org-line">
           <strong>National Transport Safety Center (NTSC)</strong>

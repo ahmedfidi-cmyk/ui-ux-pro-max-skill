@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Ahmed A. Al-Ghamdi — IT Infrastructure Specialist at the National Transport Safety Center (NTSC) in Riyadh. Microsoft 365, Azure, cybersecurity, ITIL, ServiceNow, PMP, CEH.">
-  <meta name="theme-color" content="#0A2625">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#0A2625">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#04110F">
   <title>Ahmed A. Al-Ghamdi — IT Infrastructure Specialist · NTSC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -334,6 +335,40 @@
       }
     }
 
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --surface: #0F2725;
+        --surface-soft: #061614;
+        --text: #E6F4F1;
+        --text-muted: #8FAEAB;
+        --brand: #6FE3CF;
+        --border: rgba(111, 227, 207, 0.16);
+        --ring: rgba(111, 227, 207, 0.55);
+        --shadow-card: 0 24px 64px -16px rgba(0, 0, 0, 0.65), 0 4px 12px -2px rgba(0, 0, 0, 0.45);
+        --shadow-photo: 0 12px 32px -8px rgba(0, 0, 0, 0.55);
+      }
+
+      body {
+        background:
+          radial-gradient(1200px 600px at 10% -10%, rgba(46, 140, 134, 0.18), transparent 60%),
+          radial-gradient(900px 500px at 110% 110%, rgba(111, 227, 207, 0.08), transparent 55%),
+          var(--surface-soft);
+      }
+
+      .badge {
+        background: rgba(111, 227, 207, 0.10);
+        border-color: rgba(111, 227, 207, 0.22);
+      }
+
+      .url:hover {
+        background: rgba(111, 227, 207, 0.10);
+      }
+
+      .org-line strong {
+        color: var(--text);
+      }
+    }
+
     @media print {
       body {
         background: #fff;
@@ -486,11 +521,11 @@
         </p>
 
         <div class="meta">
-          <a class="url" href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+          <a class="url" href="https://www.linkedin.com/in/ahmedfidi" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile: linkedin.com/in/ahmedfidi">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
             </svg>
-            linkedin.com/in/yourhandle
+            linkedin.com/in/ahmedfidi
           </a>
           <span class="location" aria-label="Location">
             <svg viewBox="0 0 24 24" aria-hidden="true">

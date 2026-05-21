@@ -9,22 +9,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Saudi national green palette */
-      --brand: #006C35;
-      --brand-dark: #004D24;
-      --brand-deep: #002F15;
-      --brand-light: #2E8B57;
-      --accent: #D4AF37;
+      /* NTSC brand palette */
+      --brand: #1F5D5A;
+      --brand-dark: #134341;
+      --brand-deep: #0A2625;
+      --brand-light: #2E8C86;
+      --accent: #6FE3CF;
       --surface: #FFFFFF;
-      --surface-soft: #F6FAF7;
-      --text: #002F15;
-      --text-muted: #4B6B58;
-      --border: rgba(0, 108, 53, 0.16);
-      --ring: rgba(0, 108, 53, 0.45);
+      --surface-soft: #F6FAF9;
+      --text: #0A2625;
+      --text-muted: #5C7B79;
+      --border: rgba(31, 93, 90, 0.16);
+      --ring: rgba(31, 93, 90, 0.45);
       --radius-card: 24px;
       --radius-photo: 50%;
-      --shadow-card: 0 24px 64px -16px rgba(0, 47, 21, 0.25), 0 4px 12px -2px rgba(0, 47, 21, 0.10);
-      --shadow-photo: 0 12px 32px -8px rgba(0, 108, 53, 0.45);
+      --shadow-card: 0 24px 64px -16px rgba(10, 38, 37, 0.30), 0 4px 12px -2px rgba(10, 38, 37, 0.12);
+      --shadow-photo: 0 12px 32px -8px rgba(31, 93, 90, 0.50);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,20 +33,19 @@
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(0, 108, 53, 0.10), transparent 60%),
-        radial-gradient(900px 500px at 110% 110%, rgba(46, 139, 87, 0.10), transparent 55%),
+        radial-gradient(1200px 600px at 10% -10%, rgba(31, 93, 90, 0.10), transparent 60%),
+        radial-gradient(900px 500px at 110% 110%, rgba(46, 140, 134, 0.10), transparent 55%),
         var(--surface-soft);
       color: var(--text);
       min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 48px 24px;
+      padding: 48px 16px;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
     .profile-header {
-      width: 100%;
-      max-width: 1100px;
+      max-width: min(1100px, 100%);
+      margin: 0 auto;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-card);
@@ -55,38 +54,28 @@
       position: relative;
     }
 
-    /* Banner with NTSC green + subtle palm-shield motif */
+    /* Tech-network banner in NTSC green */
     .banner {
-      height: 168px;
+      height: 200px;
       background:
-        linear-gradient(135deg, var(--brand-deep) 0%, var(--brand) 55%, var(--brand-light) 100%);
+        radial-gradient(800px 400px at 15% 10%, rgba(46, 140, 134, 0.18), transparent 55%),
+        radial-gradient(600px 400px at 95% 90%, rgba(111, 227, 207, 0.10), transparent 60%),
+        linear-gradient(135deg, var(--brand-deep) 0%, var(--brand-dark) 60%, var(--brand) 100%);
       position: relative;
       overflow: hidden;
     }
 
-    .banner::before {
-      content: "";
+    .banner svg.tech {
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at 80% 20%, black 30%, transparent 75%);
-    }
-
-    .banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(420px 160px at 12% 100%, rgba(255,255,255,0.10), transparent 60%),
-        radial-gradient(360px 180px at 88% 0%, rgba(212, 175, 55, 0.22), transparent 60%);
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .content {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 36px;
       align-items: center;
       padding: 0 48px 40px;
@@ -133,6 +122,7 @@
       gap: 6px;
       padding-top: 12px;
       min-width: 0;
+      overflow-wrap: break-word;
     }
 
     .badge {
@@ -178,12 +168,14 @@
     }
 
     .headline {
-      font-size: clamp(0.95rem, 1.4vw, 1.0625rem);
+      font-size: clamp(0.9rem, 1.4vw, 1.0625rem);
       font-weight: 500;
       line-height: 1.6;
       color: var(--text);
       margin-top: 8px;
       max-width: 72ch;
+      overflow-wrap: anywhere;
+      word-break: normal;
     }
 
     .headline .sep {
@@ -195,6 +187,7 @@
 
     .org-line {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 8px;
       font-size: 0.95rem;
@@ -264,7 +257,7 @@
 
     @media (max-width: 720px) {
       .content {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
         padding: 0 24px 32px;
         gap: 16px;
@@ -297,7 +290,101 @@
 </head>
 <body>
   <article class="profile-header" aria-label="Ahmed A. Al-Ghamdi profile header">
-    <div class="banner" aria-hidden="true"></div>
+    <div class="banner" aria-hidden="true">
+      <svg class="tech" viewBox="0 0 1100 200" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="dotGrid" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="4.5" cy="4.5" r="1.1" fill="rgba(195, 235, 225, 0.55)"/>
+          </pattern>
+          <clipPath id="globeClip">
+            <circle cx="920" cy="100" r="160"/>
+          </clipPath>
+          <radialGradient id="globeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(111, 227, 207, 0.18)"/>
+            <stop offset="60%" stop-color="rgba(111, 227, 207, 0.05)"/>
+            <stop offset="100%" stop-color="rgba(111, 227, 207, 0)"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Circuit traces -->
+        <g fill="none" stroke="#5BC3BC" stroke-width="1" opacity="0.55">
+          <path d="M-20,28 L140,28 L140,48 L300,48 L300,62 L420,62"/>
+          <path d="M-20,68 L90,68 L90,90 L220,90 L220,108 L360,108"/>
+          <path d="M-20,108 L60,108 L60,138 L180,138 L180,158 L320,158"/>
+          <path d="M-20,148 L120,148 L120,172 L280,172"/>
+          <path d="M-20,180 L80,180 L80,200"/>
+          <path d="M380,30 L460,30 L460,55 L540,55"/>
+          <path d="M440,80 L520,80 L520,110 L620,110"/>
+          <path d="M400,140 L500,140 L500,165 L580,165"/>
+          <path d="M580,25 L660,25 L660,50 L740,50"/>
+        </g>
+
+        <!-- Trace node markers -->
+        <g fill="#6FE3CF" opacity="0.75">
+          <rect x="417" y="59" width="6" height="6" transform="rotate(45 420 62)"/>
+          <rect x="357" y="105" width="6" height="6" transform="rotate(45 360 108)"/>
+          <rect x="317" y="155" width="6" height="6" transform="rotate(45 320 158)"/>
+          <rect x="277" y="169" width="6" height="6" transform="rotate(45 280 172)"/>
+          <rect x="537" y="52" width="6" height="6" transform="rotate(45 540 55)"/>
+          <rect x="617" y="107" width="6" height="6" transform="rotate(45 620 110)"/>
+          <rect x="577" y="162" width="6" height="6" transform="rotate(45 580 165)"/>
+          <rect x="737" y="47" width="6" height="6" transform="rotate(45 740 50)"/>
+        </g>
+
+        <!-- Trace junction dots -->
+        <g fill="#5BC3BC" opacity="0.6">
+          <circle cx="140" cy="28" r="2"/>
+          <circle cx="300" cy="48" r="2"/>
+          <circle cx="90" cy="68" r="2"/>
+          <circle cx="220" cy="90" r="2"/>
+          <circle cx="60" cy="108" r="2"/>
+          <circle cx="180" cy="138" r="2"/>
+          <circle cx="120" cy="148" r="2"/>
+          <circle cx="460" cy="30" r="2"/>
+          <circle cx="520" cy="80" r="2"/>
+          <circle cx="500" cy="140" r="2"/>
+          <circle cx="660" cy="25" r="2"/>
+        </g>
+
+        <!-- Globe glow -->
+        <circle cx="920" cy="100" r="180" fill="url(#globeGlow)"/>
+
+        <!-- Sphere wireframe -->
+        <g transform="translate(920 100)" fill="none" stroke="#2E8C86" stroke-width="0.8" opacity="0.45">
+          <circle r="160"/>
+          <ellipse rx="160" ry="45"/>
+          <ellipse rx="160" ry="95"/>
+          <ellipse rx="160" ry="130"/>
+          <ellipse rx="45" ry="160"/>
+          <ellipse rx="95" ry="160"/>
+          <ellipse rx="130" ry="160"/>
+        </g>
+
+        <!-- Sphere dot grid -->
+        <rect x="760" y="-60" width="320" height="320" fill="url(#dotGrid)" clip-path="url(#globeClip)"/>
+
+        <!-- Highlight data nodes on globe -->
+        <g fill="#6FE3CF">
+          <circle cx="845" cy="55" r="2.5"/>
+          <circle cx="880" cy="40" r="2"/>
+          <circle cx="935" cy="48" r="3"/>
+          <circle cx="980" cy="70" r="2"/>
+          <circle cx="1010" cy="100" r="2.5"/>
+          <circle cx="990" cy="135" r="2"/>
+          <circle cx="940" cy="160" r="3"/>
+          <circle cx="880" cy="155" r="2"/>
+          <circle cx="830" cy="125" r="2.5"/>
+          <circle cx="820" cy="85" r="2"/>
+          <circle cx="900" cy="100" r="3.5"/>
+        </g>
+
+        <!-- Connection lines from circuit to globe -->
+        <g stroke="#5BC3BC" stroke-width="0.8" fill="none" opacity="0.35">
+          <path d="M740,50 L820,85"/>
+          <path d="M580,165 L830,125"/>
+        </g>
+      </svg>
+    </div>
 
     <div class="content">
       <div class="photo" role="img" aria-label="Profile photo of Ahmed A. Al-Ghamdi">

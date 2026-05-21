@@ -6,7 +6,7 @@
   <title>Ahmed A. Al-Ghamdi — IT Infrastructure Specialist · NTSC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       /* NTSC brand-inspired palette */
@@ -31,7 +31,7 @@
     html { font-size: 16px; }
 
     body {
-      font-family: 'Inter', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background:
         radial-gradient(1200px 600px at 10% -10%, rgba(31, 93, 90, 0.10), transparent 60%),
         radial-gradient(900px 500px at 110% 110%, rgba(46, 140, 134, 0.10), transparent 55%),
@@ -82,48 +82,6 @@
       background:
         radial-gradient(420px 160px at 12% 100%, rgba(255,255,255,0.10), transparent 60%),
         radial-gradient(360px 180px at 88% 0%, rgba(212, 175, 55, 0.18), transparent 60%);
-    }
-
-    /* NTSC corner badge */
-    .org-badge {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 14px 8px 8px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.35);
-      z-index: 2;
-    }
-    .org-badge .shield {
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
-      background: var(--brand);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.05em;
-    }
-    .org-badge .org-text {
-      line-height: 1.1;
-    }
-    .org-badge .org-en {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--brand);
-      letter-spacing: 0.04em;
-    }
-    .org-badge .org-ar {
-      font-family: 'IBM Plex Sans Arabic', 'Inter', sans-serif;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      direction: rtl;
     }
 
     .content {
@@ -313,25 +271,12 @@
       .banner {
         height: 130px;
       }
-      .org-badge {
-        top: 12px;
-        right: 12px;
-        padding: 6px 10px 6px 6px;
-      }
     }
   </style>
 </head>
 <body>
   <article class="profile-header" aria-label="Ahmed A. Al-Ghamdi profile header">
-    <div class="banner" aria-hidden="true">
-      <div class="org-badge" aria-label="National Transport Safety Center">
-        <span class="shield">NT</span>
-        <span class="org-text">
-          <span class="org-en">NTSC</span><br>
-          <span class="org-ar">المركز الوطني لسلامة النقل</span>
-        </span>
-      </div>
-    </div>
+    <div class="banner" aria-hidden="true"></div>
 
     <div class="content">
       <div class="photo" role="img" aria-label="Profile photo of Ahmed A. Al-Ghamdi">

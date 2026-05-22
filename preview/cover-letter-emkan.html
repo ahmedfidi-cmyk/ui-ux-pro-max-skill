@@ -334,8 +334,8 @@
       body {
         background: #fff;
         padding: 0;
-        font-size: 10.5pt;
-        line-height: 1.55;
+        font-size: 10pt;
+        line-height: 1.45;
       }
       .letter {
         border: none;
@@ -344,43 +344,92 @@
         border-radius: 0;
       }
       .letter::before {
-        height: 4px;
+        height: 3px;
       }
       .letterhead {
-        padding: 12pt 18pt 10pt;
+        padding: 10pt 16pt 8pt;
+      }
+      .sender .name {
+        font-size: 14pt;
+      }
+      .sender .title {
+        font-size: 7pt;
+        margin-top: 3pt;
+        letter-spacing: 0.14em;
+      }
+      .sender .org {
+        font-size: 8.5pt;
+        margin-top: 2pt;
+      }
+      .contact {
+        font-size: 8.5pt;
+      }
+      .contact a {
+        font-size: 8pt;
       }
       .body {
-        padding: 10pt 18pt 14pt;
+        padding: 8pt 16pt 8pt;
       }
-      .body p {
-        margin-bottom: 9pt;
-        line-height: 1.55;
+      .meta-line {
+        margin-bottom: 8pt;
+        font-size: 8.5pt;
+      }
+      .recipient {
+        margin-bottom: 8pt;
+        font-size: 9.5pt;
+        line-height: 1.4;
       }
       .subject {
-        margin-bottom: 14pt;
-        padding: 6pt 10pt;
+        margin-bottom: 10pt;
+        padding: 5pt 9pt;
+        font-size: 7.5pt;
         background: #F6FAF9 !important;
         color: #1F5D5A !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
+      .greeting {
+        margin-bottom: 6pt;
+        font-size: 10pt;
+      }
+      .body p {
+        margin-bottom: 6pt;
+        line-height: 1.45;
+        font-size: 10pt;
+      }
       .signature {
-        margin-top: 20pt;
+        margin-top: 10pt;
+        page-break-inside: avoid;
       }
       .signature .salut {
-        margin-bottom: 24pt;
+        margin-bottom: 16pt;
+        font-size: 10pt;
+      }
+      .signature .name {
+        font-size: 11.5pt;
+      }
+      .signature .role {
+        font-size: 8.5pt;
+        margin-top: 2pt;
       }
       .footer {
-        padding: 8pt 18pt;
+        padding: 6pt 16pt;
         background: #fff;
         border-top: 1px solid #C9DAD8;
+        page-break-inside: avoid;
+        page-break-before: avoid;
       }
       .chip {
         background: #fff;
         border-color: #C9DAD8;
+        font-size: 7.5pt;
+        padding: 4pt 10pt;
+      }
+      .chip.url {
+        font-size: 7pt;
       }
       @page {
-        margin: 0.45in;
+        margin: 0.4in;
         size: A4;
       }
     }

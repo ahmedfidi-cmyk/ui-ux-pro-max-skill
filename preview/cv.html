@@ -418,15 +418,37 @@
       color: var(--text);
     }
 
-    /* Print */
+    /* Print: revert to ink-friendly light theme */
     @media print {
-      body { background: #04110F; padding: 0; }
+      :root {
+        --brand: #1F5D5A;
+        --brand-dark: #134341;
+        --brand-deep: #0A2625;
+        --brand-light: #2E8C86;
+        --accent: #2E8C86;
+        --surface: #FFFFFF;
+        --surface-soft: #F6FAF9;
+        --sidebar-bg: #F1F6F5;
+        --text: #0A2625;
+        --text-muted: #5C7B79;
+        --text-soft: #7A9492;
+        --border: rgba(31, 93, 90, 0.16);
+        --rule: rgba(31, 93, 90, 0.10);
+      }
+      body { background: #FFFFFF; padding: 0; }
       .page {
         box-shadow: none;
         margin: 0;
         page-break-after: always;
       }
       .page:last-child { page-break-after: auto; }
+      .tech-cloud .chip {
+        background: #FFFFFF;
+        color: var(--brand-dark);
+      }
+      .achievements li::before {
+        box-shadow: 0 0 0 2px rgba(46, 140, 134, 0.18);
+      }
     }
 
     /* Small-screen preview */

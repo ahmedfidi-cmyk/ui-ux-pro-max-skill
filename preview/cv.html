@@ -9,19 +9,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --brand: #1F5D5A;
-      --brand-dark: #134341;
-      --brand-deep: #0A2625;
-      --brand-light: #2E8C86;
+      /* Inverted: green surfaces, white type */
+      --brand: #FFFFFF;
+      --brand-dark: #F1F6F5;
+      --brand-deep: #FFFFFF;
+      --brand-light: #6FE3CF;
       --accent: #6FE3CF;
-      --surface: #FFFFFF;
-      --surface-soft: #F6FAF9;
-      --sidebar-bg: #F1F6F5;
-      --text: #0A2625;
-      --text-muted: #5C7B79;
-      --text-soft: #7A9492;
-      --border: rgba(31, 93, 90, 0.16);
-      --rule: rgba(31, 93, 90, 0.10);
+      --surface: #134341;
+      --surface-soft: #0A2625;
+      --sidebar-bg: #082020;
+      --text: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.78);
+      --text-soft: rgba(255, 255, 255, 0.55);
+      --border: rgba(255, 255, 255, 0.20);
+      --rule: rgba(255, 255, 255, 0.10);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +36,7 @@
     body {
       font-family: 'Inter', -apple-system, sans-serif;
       color: var(--text);
-      background: #E9EEED;
+      background: #04110F;
       -webkit-font-smoothing: antialiased;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -198,12 +199,12 @@
       display: inline-block;
       padding: 1.2mm 2.4mm;
       margin: 0 1.2mm 1.2mm 0;
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--border);
       border-radius: 4px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 7.5pt;
-      color: var(--brand-dark);
+      color: #FFFFFF;
     }
 
     .edu-item, .cert-item {
@@ -334,7 +335,7 @@
       height: 6px;
       border-radius: 50%;
       background: var(--brand-light);
-      box-shadow: 0 0 0 2px rgba(46, 140, 134, 0.18);
+      box-shadow: 0 0 0 2px rgba(111, 227, 207, 0.22);
     }
 
     .role {
@@ -419,7 +420,7 @@
 
     /* Print */
     @media print {
-      body { background: #fff; padding: 0; }
+      body { background: #04110F; padding: 0; }
       .page {
         box-shadow: none;
         margin: 0;

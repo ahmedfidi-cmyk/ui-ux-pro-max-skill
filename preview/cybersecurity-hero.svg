@@ -19,24 +19,18 @@
       <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
     </radialGradient>
 
-    <linearGradient id="trailRight" x1="0%" y1="50%" x2="100%" y2="50%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.85"/>
-      <stop offset="35%" stop-color="#00d4ff" stop-opacity="0.45"/>
+    <linearGradient id="trailH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+      <stop offset="6%" stop-color="#00d4ff" stop-opacity="0.78"/>
+      <stop offset="14%" stop-color="#00d4ff" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="trailLeft" x1="100%" y1="50%" x2="0%" y2="50%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.85"/>
-      <stop offset="35%" stop-color="#00d4ff" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="trailDown" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.85"/>
-      <stop offset="35%" stop-color="#00d4ff" stop-opacity="0.45"/>
-      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="trailUp" x1="50%" y1="100%" x2="50%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.85"/>
-      <stop offset="35%" stop-color="#00d4ff" stop-opacity="0.45"/>
+    <linearGradient id="trailV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+      <stop offset="6%" stop-color="#00d4ff" stop-opacity="0.78"/>
+      <stop offset="14%" stop-color="#00d4ff" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
     </linearGradient>
 
@@ -52,11 +46,15 @@
 
   <circle cx="960" cy="540" r="520" fill="url(#atmosphere)"/>
 
-  <g stroke-linecap="round">
-    <line x1="1102" y1="540" x2="1820" y2="540" stroke="url(#trailRight)" stroke-width="1.4" filter="url(#trailGlow)"/>
-    <line x1="818" y1="540" x2="100" y2="540" stroke="url(#trailLeft)" stroke-width="1.4" filter="url(#trailGlow)"/>
-    <line x1="960" y1="682" x2="960" y2="1040" stroke="url(#trailDown)" stroke-width="1.4" filter="url(#trailGlow)"/>
-    <line x1="960" y1="398" x2="960" y2="40" stroke="url(#trailUp)" stroke-width="1.4" filter="url(#trailGlow)"/>
+  <g filter="url(#trailGlow)">
+    <rect x="1102" y="538.4" width="718" height="3.2" fill="url(#trailH)"/>
+    <g transform="translate(818 540) rotate(180) translate(0 -1.6)">
+      <rect x="0" y="0" width="718" height="3.2" fill="url(#trailH)"/>
+    </g>
+    <rect x="958.4" y="682" width="3.2" height="358" fill="url(#trailV)"/>
+    <g transform="translate(960 398) rotate(180) translate(-1.6 0)">
+      <rect x="0" y="0" width="3.2" height="358" fill="url(#trailV)"/>
+    </g>
   </g>
 
   <circle cx="960" cy="540" r="180" fill="url(#rimGlow)"/>

@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Cybersecurity hero graphic: glowing cyan wireframe sphere with central circuit node and four radiating light trails on a charcoal background">
+  <defs>
+    <radialGradient id="atmosphere" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.14"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="rimGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
+      <stop offset="78%" stop-color="#00d4ff" stop-opacity="0.04"/>
+      <stop offset="92%" stop-color="#00d4ff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#00d4ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="trailH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+      <stop offset="6%" stop-color="#00d4ff" stop-opacity="0.78"/>
+      <stop offset="14%" stop-color="#00d4ff" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="trailV" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+      <stop offset="6%" stop-color="#00d4ff" stop-opacity="0.78"/>
+      <stop offset="14%" stop-color="#00d4ff" stop-opacity="0.55"/>
+      <stop offset="40%" stop-color="#00d4ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2"/>
+    </filter>
+    <filter id="trailGlow" x="-20%" y="-200%" width="140%" height="500%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#1a1a1a"/>
+
+  <circle cx="960" cy="540" r="520" fill="url(#atmosphere)"/>
+
+  <g filter="url(#trailGlow)">
+    <rect x="1102" y="538.4" width="718" height="3.2" fill="url(#trailH)"/>
+    <g transform="translate(818 540) rotate(180) translate(0 -1.6)">
+      <rect x="0" y="0" width="718" height="3.2" fill="url(#trailH)"/>
+    </g>
+    <rect x="958.4" y="682" width="3.2" height="358" fill="url(#trailV)"/>
+    <g transform="translate(960 398) rotate(180) translate(-1.6 0)">
+      <rect x="0" y="0" width="3.2" height="358" fill="url(#trailV)"/>
+    </g>
+  </g>
+
+  <circle cx="960" cy="540" r="180" fill="url(#rimGlow)"/>
+
+  <g transform="translate(960 540)" fill="none" stroke="#00d4ff" stroke-linecap="round">
+    <circle r="140" stroke-width="1.1" opacity="0.55" filter="url(#softGlow)"/>
+    <circle r="140" stroke-width="0.7" opacity="0.85"/>
+
+    <ellipse rx="140" ry="140" stroke-width="0.6" opacity="0.35"/>
+    <ellipse rx="105" ry="140" stroke-width="0.6" opacity="0.28"/>
+    <ellipse rx="62" ry="140" stroke-width="0.6" opacity="0.22"/>
+    <ellipse rx="18" ry="140" stroke-width="0.55" opacity="0.18"/>
+
+    <ellipse rx="140" ry="105" stroke-width="0.6" opacity="0.28"/>
+    <ellipse rx="140" ry="62" stroke-width="0.6" opacity="0.22"/>
+    <ellipse rx="140" ry="18" stroke-width="0.55" opacity="0.18"/>
+
+    <line x1="-140" y1="0" x2="140" y2="0" stroke-width="0.5" opacity="0.22"/>
+    <line x1="0" y1="-140" x2="0" y2="140" stroke-width="0.5" opacity="0.22"/>
+  </g>
+
+  <circle cx="960" cy="540" r="70" fill="url(#coreGlow)"/>
+
+  <g transform="translate(960 540)" fill="none" stroke="#00d4ff" stroke-linecap="square" stroke-linejoin="miter">
+    <rect x="-18" y="-18" width="36" height="36" stroke-width="1.1" opacity="0.95"/>
+    <line x1="-18" y1="-9" x2="-26" y2="-9" stroke-width="0.9" opacity="0.85"/>
+    <line x1="-18" y1="9"  x2="-26" y2="9"  stroke-width="0.9" opacity="0.85"/>
+    <line x1="18"  y1="-9" x2="26"  y2="-9" stroke-width="0.9" opacity="0.85"/>
+    <line x1="18"  y1="9"  x2="26"  y2="9"  stroke-width="0.9" opacity="0.85"/>
+    <line x1="-9"  y1="-18" x2="-9" y2="-26" stroke-width="0.9" opacity="0.85"/>
+    <line x1="9"   y1="-18" x2="9"  y2="-26" stroke-width="0.9" opacity="0.85"/>
+    <line x1="-9"  y1="18"  x2="-9" y2="26"  stroke-width="0.9" opacity="0.85"/>
+    <line x1="9"   y1="18"  x2="9"  y2="26"  stroke-width="0.9" opacity="0.85"/>
+
+    <circle r="3.2" fill="#00d4ff" stroke="none"/>
+    <circle r="6" stroke-width="0.6" opacity="0.5"/>
+  </g>
+</svg>

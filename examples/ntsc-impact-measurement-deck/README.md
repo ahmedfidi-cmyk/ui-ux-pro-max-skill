@@ -20,6 +20,22 @@ system.
 | `assets/` | Official NTSC logo + palm/road emblem (SVG/PNG, recolored variants) |
 | `render.py` | Renders the HTML to PNG + PDF via headless Chromium |
 | `make_pptx.py` | Generates the editable PPTX via python-pptx |
+| `NTSC-SMART-Goal-Template.docx` | Ready-to-use, fillable SMART goal template for event participation (RTL Arabic) |
+| `make_smart_template.py` | Generates the SMART goal template via python-docx |
+
+## SMART Goal Template
+
+A fillable Word document for the **planning (before-event) stage**, tailored to
+NTSC event participation. Sections: event data · overall objective · the SMART
+framework (Specific/Measurable/Achievable/Relevant/Time-bound) · a repeatable
+goal worksheet · a pre-filled worked example · a KPI-target reference linked to
+the deck's measures (5–10% visitors, 2–5 min dwell, 2 partnerships, 1 media
+coverage) · preparation & approval sign-off. Swap the font to brand *TheSans*
+where installed.
+
+```bash
+python3 make_smart_template.py   # -> NTSC-SMART-Goal-Template.docx
+```
 
 ## Brand system (official NTSC guidelines)
 

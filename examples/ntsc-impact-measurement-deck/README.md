@@ -22,6 +22,10 @@ system.
 | `make_pptx.py` | Generates the editable PPTX via python-pptx |
 | `NTSC-SMART-Goal-Template.docx` | Ready-to-use, fillable SMART goal template for event participation (RTL Arabic) |
 | `make_smart_template.py` | Generates the SMART goal template via python-docx |
+| `NTSC-SMART-Goal-Template.pdf` | Print-ready PDF of the SMART goal template |
+| `smart-slide.html` / `NTSC-SMART-Slide.pdf` | Deck-matching SMART slide (HTML source + rendered PDF) |
+| `NTSC-Impact-Scorecard.xlsx` | Excel target-vs-actual scorecard (auto % + ratings + annual tracker) |
+| `make_scorecard.py` | Generates the Excel scorecard via openpyxl |
 
 ## SMART Goal Template
 
@@ -35,6 +39,20 @@ where installed.
 
 ```bash
 python3 make_smart_template.py   # -> NTSC-SMART-Goal-Template.docx
+```
+
+## SMART slide & Excel scorecard
+
+- **SMART slide** (`smart-slide.html` → `NTSC-SMART-Slide.pdf`) — a 10th slide in
+  the exact deck style: five color-coded S·M·A·R·T pillars over a KPI strip.
+- **Impact scorecard** (`NTSC-Impact-Scorecard.xlsx`) — three RTL sheets:
+  *بطاقة التقييم* (single-event target-vs-actual with auto achievement % and
+  status ratings), *سجل الفعاليات* (12-event annual tracker with averages), and
+  *المؤشرات المعتمدة* (KPI reference). Conditional formatting flags
+  green/amber/red against targets.
+
+```bash
+python3 make_scorecard.py   # -> NTSC-Impact-Scorecard.xlsx
 ```
 
 ## Brand system (official NTSC guidelines)

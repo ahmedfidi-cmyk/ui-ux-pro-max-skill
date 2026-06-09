@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>NTSC SMART Goal Template</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--evening:#004E43;--gable:#17332F;--highland:#71946A;--swirl:#D5D0C3;
+  --anzac:#DEB83B;--paper:#F6F4EE;--ink:#2C3A36;--light:#EEF2EC;--line:#CFDAD2}
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4;margin:0}
+html{font-family:'IBM Plex Sans Arabic',sans-serif;color:var(--ink)}
+.en{font-family:'IBM Plex Sans',sans-serif;direction:ltr;unicode-bidi:isolate}
+.page{width:210mm;min-height:297mm;background:#fff;padding:13mm 14mm;margin:0 auto;position:relative}
+.page+.page{page-break-before:always}
+
+/* header */
+.head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.head .ttl h1{font-size:21px;font-weight:700;color:var(--evening);line-height:1.25}
+.head .ttl h1 b{color:var(--anzac)}
+.head .ttl h2{font-size:14px;font-weight:600;color:var(--evening);margin-top:2px}
+.head .ttl .en{font-size:10px;color:var(--highland);margin-top:3px;letter-spacing:.04em}
+.head img{height:42px}
+.gold-rule{height:3px;background:var(--anzac);margin:9px 0 4px;border-radius:2px}
+.org{font-size:9px;color:var(--highland);text-align:right}
+.intro{font-size:11px;line-height:1.6;color:var(--ink);margin:10px 0 6px;
+  background:var(--light);border-radius:8px;padding:10px 13px;border-right:3px solid var(--highland)}
+
+/* section heads */
+.sec{background:var(--evening);color:#fff;border-radius:7px;padding:7px 13px;margin:13px 0 8px;
+  display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:600}
+.sec .n{color:var(--anzac);font-weight:700}
+.sec .en{font-size:9.5px;color:#CFE0D9;font-weight:400;margin-right:auto}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:10.5px}
+td,th{border:1px solid var(--line);padding:7px 10px;vertical-align:middle;text-align:right}
+.lbl{background:var(--light);color:var(--evening);font-weight:600;width:32%}
+.lbl .en{display:block;font-size:8px;color:var(--highland);font-weight:500;margin-top:1px}
+.fill{height:30px}
+.box{border:1px solid var(--line);border-radius:8px;min-height:54px;padding:10px 12px;
+  color:#9AA7A2;font-style:italic;font-size:10.5px}
+
+/* SMART framework */
+.smart th{background:var(--evening);color:#fff;font-weight:600;text-align:center;font-size:10px}
+.smart .letter{width:42px;text-align:center;color:#fff;font-weight:700;font-size:17px}
+.smart td.mean{width:30%;font-weight:600;color:var(--evening)}
+.smart td.mean .en{font-weight:500;color:var(--highland);font-size:8.5px}
+.smart td.q{color:var(--ink)}
+
+/* worksheet */
+.ws .lbl{width:25%}
+.ws .fill{height:26px}
+.ws tr:first-child .lbl{background:var(--swirl)}
+
+/* example */
+.ex-cap{font-size:11px;font-weight:600;color:var(--evening);margin:10px 0 4px}
+.ex td{font-size:9.5px}
+.ex .lbl{background:#FBF3D9;color:#8A6D12;width:25%;border-color:#E6D9A8}
+.ex td{border-color:#E6D9A8}
+
+/* kpi */
+.kpi th{background:var(--evening);color:#fff;text-align:center;font-weight:600;font-size:10px}
+.kpi td{text-align:center}
+.kpi td.name{text-align:right;font-weight:600;color:var(--evening)}
+.kpi tr:nth-child(even) td{background:#F4F6F2}
+.kpi .tgt{font-weight:700;color:var(--ink)}
+
+/* signoff */
+.sign td{height:64px;vertical-align:top}
+.sign .lbl{height:auto}
+.foot{text-align:center;color:var(--highland);font-size:9.5px;margin-top:14px;letter-spacing:.02em}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="head">
+    <div class="ttl">
+      <h1>نموذج أهداف <b>SMART</b></h1>
+      <h2>لمشاركات المركز في الفعاليات والمؤتمرات</h2>
+      <div class="en">SMART Goals Template · Event Participation</div>
+    </div>
+    <img src="assets/ntsc-logo-green.png" alt="NTSC">
+  </div>
+  <div class="gold-rule"></div>
+  <div class="org">إدارة التواصل · المركز الوطني لسلامة النقل&nbsp;&nbsp;|&nbsp;&nbsp;<span class="en">Communications Department — National Transport Safety Center</span></div>
+
+  <div class="intro">يُستخدم هذا النموذج في مرحلة التخطيط (قبل الحدث) لصياغة أهداف المشاركة وفق منهجية SMART، وربطها بمؤشرات الأداء المعتمدة لقياس الأثر بعد المشاركة.</div>
+
+  <!-- 1 EVENT DATA -->
+  <div class="sec"><span class="n">1</span> بيانات الفعالية <span class="en">Event Data</span></div>
+  <table>
+    <tr><td class="lbl">اسم الفعالية<span class="en">Event name</span></td><td class="fill"></td></tr>
+    <tr><td class="lbl">الجهة المنظِّمة<span class="en">Organizer</span></td><td class="fill"></td></tr>
+    <tr><td class="lbl">مكان وتاريخ المشاركة<span class="en">Venue &amp; date</span></td><td class="fill"></td></tr>
+    <tr><td class="lbl">نوع المشاركة<span class="en">Participation type</span></td><td class="fill"></td></tr>
+    <tr><td class="lbl">مدير المشاركة<span class="en">Lead</span></td><td class="fill"></td></tr>
+    <tr><td class="lbl">فريق ممثّلي المركز<span class="en">Representatives</span></td><td class="fill"></td></tr>
+  </table>
+
+  <!-- 2 OVERALL OBJECTIVE -->
+  <div class="sec"><span class="n">2</span> الهدف العام من المشاركة <span class="en">Overall Objective</span></div>
+  <div class="box">اكتب هنا الغاية الإستراتيجية من المشاركة…</div>
+
+  <!-- 3 SMART FRAMEWORK -->
+  <div class="sec"><span class="n">3</span> إطار SMART لصياغة الهدف <span class="en">The SMART Framework</span></div>
+  <table class="smart">
+    <tr><th>السؤال التوجيهي · Guiding question</th><th>المعنى · Meaning</th><th>الحرف</th></tr>
+    <tr><td class="q">ماذا نريد تحقيقه بالضبط؟ مَن المعنيّ وأين؟</td><td class="mean">محدد <span class="en">Specific</span></td><td class="letter" style="background:#E1B92E;color:#17332F"><span class="en">S</span></td></tr>
+    <tr><td class="q">ما المؤشر والرقم المستهدف الذي يُثبت تحقّق الهدف؟</td><td class="mean">قابل للقياس <span class="en">Measurable</span></td><td class="letter" style="background:#004E43"><span class="en">M</span></td></tr>
+    <tr><td class="q">هل الموارد (فريق، ميزانية، وقت) كافية لتحقيقه؟</td><td class="mean">قابل للتحقيق <span class="en">Achievable</span></td><td class="letter" style="background:#71946A"><span class="en">A</span></td></tr>
+    <tr><td class="q">كيف يخدم الهدفُ أولويات المركز وصورته الذهنية؟</td><td class="mean">ذو صلة <span class="en">Relevant</span></td><td class="letter" style="background:#17332F"><span class="en">R</span></td></tr>
+    <tr><td class="q">ما الإطار الزمني والموعد النهائي للقياس؟</td><td class="mean">محدد زمنياً <span class="en">Time-bound</span></td><td class="letter" style="background:#DEB83B;color:#17332F"><span class="en">T</span></td></tr>
+  </table>
+</div>
+
+<div class="page">
+  <!-- 4 WORKSHEET -->
+  <div class="sec"><span class="n">4</span> بطاقة صياغة الهدف (قابلة للتكرار لكل هدف) <span class="en">SMART Goal Worksheet</span></div>
+  <table class="ws">
+    <tr><td class="lbl">الهدف (صياغة نهائية)</td><td class="fill"></td></tr>
+    <tr><td class="lbl">S — محدد</td><td class="fill"></td></tr>
+    <tr><td class="lbl">M — قابل للقياس (المؤشر + الرقم المستهدف)</td><td class="fill"></td></tr>
+    <tr><td class="lbl">A — قابل للتحقيق (الموارد)</td><td class="fill"></td></tr>
+    <tr><td class="lbl">R — ذو صلة (الارتباط بأهداف المركز)</td><td class="fill"></td></tr>
+    <tr><td class="lbl">T — محدد زمنياً (الموعد/الإطار)</td><td class="fill"></td></tr>
+  </table>
+
+  <div class="ex-cap">مثال مُعبّأ (نموذجي):</div>
+  <table class="ex">
+    <tr><td class="lbl">الهدف</td><td>استقطاب زوّار نوعيين لجناح المركز وتحقيق تغطية إعلامية خارجية خلال المعرض.</td></tr>
+    <tr><td class="lbl">S — محدد</td><td>زيادة تفاعل الجمهور المتخصص في سلامة النقل مع جناح المركز.</td></tr>
+    <tr><td class="lbl">M — قابل للقياس</td><td>عدد زوّار يعادل ١٠٪ من إجمالي زوّار المعرض + تغطية إعلامية خارجية واحدة على الأقل.</td></tr>
+    <tr><td class="lbl">A — قابل للتحقيق</td><td>فريق من ٤ ممثّلين + مواد تعريفية جاهزة + جدول لقاءات مسبق.</td></tr>
+    <tr><td class="lbl">R — ذو صلة</td><td>يدعم الصورة الذهنية للمركز وأهداف التسويق الإستراتيجي.</td></tr>
+    <tr><td class="lbl">T — محدد زمنياً</td><td>خلال أيام المعرض (٣ أيام) مع رفع التقرير خلال ٥ أيام عمل من انتهائه.</td></tr>
+  </table>
+
+  <!-- 5 KPI REFERENCE -->
+  <div class="sec"><span class="n">5</span> ربط الأهداف بمؤشرات الأداء المعتمدة <span class="en">Linked KPI Targets</span></div>
+  <table class="kpi">
+    <tr><th>المؤشر · KPI</th><th>النوع · Type</th><th>المستهدف · Target</th><th>الناتج الفعلي · Actual</th></tr>
+    <tr><td class="name">عدد زوّار الجناح</td><td>نسبي</td><td class="tgt">٥–١٠٪ من الزوّار</td><td></td></tr>
+    <tr><td class="name">مدّة بقاء الزائر</td><td>كمّي</td><td class="tgt">٢–٥ دقائق</td><td></td></tr>
+    <tr><td class="name">الشراكات المستهدَفة</td><td>كمّي</td><td class="tgt">٢</td><td></td></tr>
+    <tr><td class="name">التغطيات الإعلامية الخارجية</td><td>كمّي</td><td class="tgt">١</td><td></td></tr>
+  </table>
+
+  <!-- 6 SIGN-OFF -->
+  <div class="sec"><span class="n">6</span> الإعداد والاعتماد <span class="en">Preparation &amp; Approval</span></div>
+  <table class="sign">
+    <tr><td class="lbl">إعداد: مدير المشاركة <span class="en">Prepared by</span></td><td class="lbl">اعتماد: مدير عام الإدارة <span class="en">Approved by</span></td></tr>
+    <tr><td style="color:#9AA7A2;font-style:italic">الاسم / التوقيع / التاريخ:</td><td style="color:#9AA7A2;font-style:italic">الاسم / التوقيع / التاريخ:</td></tr>
+  </table>
+
+  <div class="foot">نقيس الأثر · نوثّق الدروس · نرتقي بالحضور &nbsp;—&nbsp; <span class="en">NTSC · Communications Department</span></div>
+</div>
+</body>
+</html>

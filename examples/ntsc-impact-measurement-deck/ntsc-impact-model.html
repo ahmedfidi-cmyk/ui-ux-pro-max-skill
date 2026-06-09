@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نموذج قياس أثر المشاركات — NTSC Participation Impact Measurement Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   NTSC — National Transport Safety Center
+   Official brand palette (from corporate guidelines)
+   ============================================================ */
+:root{
+  --evening-sea:#004E43;   /* primary */
+  --gable-green:#17332F;   /* deep secondary */
+  --highland:#71946A;      /* sage */
+  --swirl:#D5D0C3;         /* warm neutral */
+  --anzac:#DEB83B;         /* gold metallic */
+  --anzac-soft:#E9CE74;
+  --ink:#11201D;
+  --paper:#F6F4EE;         /* ivory paper */
+  --paper-2:#FBFAF6;
+  --line:rgba(0,78,67,.16);
+  --line-soft:rgba(0,78,67,.10);
+  --font-ar:'IBM Plex Sans Arabic',system-ui,sans-serif;
+  --font-en:'IBM Plex Sans',system-ui,sans-serif;
+  --shadow:0 24px 60px -28px rgba(7,40,35,.45);
+  --shadow-sm:0 12px 30px -18px rgba(7,40,35,.40);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#2a2f2d;font-family:var(--font-ar);color:var(--ink);-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column;align-items:center;gap:26px;padding:26px 0}
+
+/* ---- Slide frame : fixed 1280x720 (16:9) ---- */
+.slide{
+  position:relative;width:1280px;height:720px;overflow:hidden;
+  background:var(--paper);
+  display:flex;flex-direction:column;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.7);
+}
+.en{font-family:var(--font-en);direction:ltr;unicode-bidi:isolate}
+.num{font-family:var(--font-en);font-feature-settings:"tnum"}
+
+/* ---- Shared chrome : top bar + footer ---- */
+.topbar{display:flex;align-items:center;justify-content:space-between;
+  padding:26px 56px 0;flex:0 0 auto;z-index:5}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--evening-sea)}
+.eyebrow .kicker{font-size:13px;font-weight:600;letter-spacing:.02em}
+.eyebrow .kicker .en{font-size:11px;color:var(--highland);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.eyebrow .bar{width:34px;height:2px;background:var(--anzac)}
+.snum{font-family:var(--font-en);font-size:12px;letter-spacing:.18em;color:var(--highland);font-weight:600}
+.emblem-mini{height:42px;width:auto;opacity:.95}
+
+.body{flex:1 1 auto;padding:18px 56px 14px;display:flex;flex-direction:column;min-height:0;z-index:4}
+.footer{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;
+  padding:0 56px 22px;color:var(--highland);font-size:11.5px;letter-spacing:.02em}
+.footer .en{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(113,148,106,.85)}
+.footer .rule{position:absolute;left:56px;right:56px;border-top:1px solid var(--line-soft);margin-top:-14px}
+
+h2.title{font-size:32px;font-weight:700;color:var(--evening-sea);line-height:1.18;letter-spacing:-.01em}
+.title .accent{color:var(--anzac);}
+.subtitle-en{font-family:var(--font-en);font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--highland);font-weight:600;margin-top:6px}
+.lead{font-size:16px;line-height:1.7;color:#3a4a45;font-weight:400;max-width:62ch}
+
+/* watermark emblem */
+.wm{position:absolute;pointer-events:none;opacity:.05;z-index:0}
+
+/* ============================ S1 COVER ============================ */
+.cover{background:
+  radial-gradient(120% 90% at 88% 12%, rgba(113,148,106,.30), transparent 55%),
+  radial-gradient(130% 120% at 8% 100%, rgba(23,51,47,.96), rgba(0,78,67,.98) 45%, #013b33 100%);
+  color:#fff;justify-content:center}
+.cover .pattern{position:absolute;inset:0;opacity:.10;
+  background-image:radial-gradient(circle at 1px 1px, rgba(222,184,59,.9) 1.2px, transparent 0);
+  background-size:34px 34px;z-index:0}
+.cover .glow{position:absolute;width:760px;height:760px;border-radius:50%;right:-220px;top:-260px;
+  background:radial-gradient(circle,rgba(222,184,59,.16),transparent 62%);z-index:0}
+.cover-inner{position:relative;z-index:3;padding:0 84px}
+.cover .logo{height:62px;margin-bottom:46px}
+.cover .ar-mega{font-size:64px;font-weight:700;line-height:1.12;letter-spacing:-.02em;
+  background:linear-gradient(180deg,#fff 60%,#dfeae3);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.cover .ar-mega b{color:var(--anzac);-webkit-text-fill-color:var(--anzac)}
+.cover .en-title{font-family:var(--font-en);direction:ltr;font-size:19px;font-weight:500;letter-spacing:.30em;
+  text-transform:uppercase;color:var(--anzac-soft);margin-top:20px}
+.cover .divider{width:70px;height:3px;background:var(--anzac);margin:30px 0 22px;border-radius:2px}
+.cover .dept{display:flex;align-items:center;gap:14px;color:#cfe0d9;font-size:16px;font-weight:500}
+.cover .dept .en{font-family:var(--font-en);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--highland)}
+.cover .corner{position:absolute;bottom:40px;left:84px;z-index:3;display:flex;align-items:center;gap:18px;
+  color:rgba(207,224,217,.7);font-size:12px}
+.cover .corner .en{font-family:var(--font-en);letter-spacing:.14em;text-transform:uppercase}
+.cover .emblem-watermark{position:absolute;right:-90px;bottom:-120px;height:560px;opacity:.06;z-index:1}
+
+/* ============================ generic cards ============================ */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:26px 24px;
+  box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.card .idx{font-family:var(--font-en);font-size:12px;font-weight:700;color:var(--anzac);letter-spacing:.1em}
+.card .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;
+  background:linear-gradient(135deg,var(--evening-sea),var(--gable-green))}
+.card .ic svg{width:24px;height:24px;stroke:var(--anzac);fill:none;stroke-width:1.7}
+.card h3{font-size:18px;color:var(--evening-sea);font-weight:600;margin-bottom:8px;line-height:1.35}
+.card p{font-size:13.5px;line-height:1.65;color:#52615c}
+.card .en-tag{font-family:var(--font-en);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--highland);font-weight:600;margin-top:12px;direction:ltr}
+.card .topstripe{position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--anzac),var(--highland))}
+
+/* ============================ S3 MODEL JOURNEY ============================ */
+.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:30px;position:relative}
+.jconn{position:absolute;top:38px;right:9%;left:9%;height:2px;
+  background:repeating-linear-gradient(90deg,var(--highland) 0 8px,transparent 8px 16px);z-index:0}
+.jstep{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 10px}
+.jnode{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;position:relative;
+  background:var(--paper);border:2px solid var(--line)}
+.jstep.on .jnode{background:linear-gradient(135deg,var(--evening-sea),var(--gable-green));border-color:var(--evening-sea);box-shadow:0 14px 26px -12px rgba(0,78,67,.6)}
+.jnode svg{width:32px;height:32px;stroke:var(--evening-sea);fill:none;stroke-width:1.6}
+.jstep.on .jnode svg{stroke:var(--anzac)}
+.jnum{position:absolute;top:-8px;right:-8px;width:26px;height:26px;border-radius:50%;background:var(--anzac);
+  color:var(--gable-green);font-family:var(--font-en);font-weight:700;font-size:13px;display:grid;place-items:center;border:2px solid var(--paper)}
+.jstep h4{font-size:15px;color:var(--evening-sea);font-weight:600;margin-top:18px;line-height:1.3}
+.jstep .en{font-family:var(--font-en);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--highland);margin-top:6px;font-weight:600}
+.phase-flow{margin-top:38px;display:flex;align-items:center;justify-content:center;gap:14px;color:var(--highland);font-size:12.5px}
+.phase-flow span{background:rgba(113,148,106,.12);padding:7px 16px;border-radius:30px;border:1px solid var(--line-soft);color:var(--evening-sea);font-weight:500}
+
+/* ============================ S4 two-column collection ============================ */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+.panel{border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+.panel.before{background:var(--paper-2);border:1px solid var(--line)}
+.panel.after{background:linear-gradient(160deg,var(--evening-sea),var(--gable-green));color:#fff}
+.panel .ph{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.panel .ph .dot{width:38px;height:38px;border-radius:10px;display:grid;place-items:center}
+.panel.before .ph .dot{background:rgba(0,78,67,.08)}
+.panel.after .ph .dot{background:rgba(222,184,59,.18)}
+.panel .ph .dot svg{width:20px;height:20px;fill:none;stroke-width:1.7}
+.panel.before .ph .dot svg{stroke:var(--evening-sea)}
+.panel.after .ph .dot svg{stroke:var(--anzac)}
+.panel .ph h3{font-size:19px;font-weight:600}
+.panel.before .ph h3{color:var(--evening-sea)}
+.panel .ph .en{font-family:var(--font-en);font-size:10px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-top:2px}
+.panel.before .ph .en{color:var(--highland)} .panel.after .ph .en{color:var(--anzac-soft)}
+.flist{list-style:none;display:flex;flex-direction:column;gap:14px}
+.flist li{display:flex;align-items:flex-start;gap:12px;font-size:14.5px;line-height:1.5}
+.panel.before .flist li{color:#3f4f4a}
+.flist li::before{content:"";flex:0 0 auto;width:8px;height:8px;border-radius:2px;margin-top:7px;transform:rotate(45deg)}
+.panel.before .flist li::before{background:var(--anzac)}
+.panel.after .flist li::before{background:var(--anzac)}
+.note{margin-top:16px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--highland);
+  background:rgba(113,148,106,.10);border-right:3px solid var(--anzac);padding:10px 14px;border-radius:8px}
+
+/* ============================ S5 KPI ============================ */
+.kpi-wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:26px;margin-top:10px;align-items:stretch}
+.kpi-list{display:flex;flex-direction:column;gap:13px}
+.kpi-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:14px 18px;box-shadow:var(--shadow-sm)}
+.kpi-row .kic{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--evening-sea),var(--gable-green));flex:0 0 auto}
+.kpi-row .kic svg{width:22px;height:22px;stroke:var(--anzac);fill:none;stroke-width:1.7}
+.kpi-row h4{font-size:15.5px;color:var(--evening-sea);font-weight:600}
+.kpi-row .desc{font-size:11.5px;color:#6a7873;line-height:1.45;margin-top:3px}
+.kpi-row .desc .en{font-family:var(--font-en);letter-spacing:.04em}
+.kpi-target{text-align:center;flex:0 0 auto;min-width:96px}
+.kpi-target .v{font-family:var(--font-en);font-size:26px;font-weight:700;color:var(--evening-sea);line-height:1;direction:ltr;unicode-bidi:isolate}
+.kpi-target .v small{font-size:13px;font-weight:600}
+.kpi-target .u{font-size:11px;color:var(--highland);margin-top:3px}
+.tag{display:inline-block;font-family:var(--font-en);font-size:9px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-top:6px}
+.tag.rel{background:rgba(222,184,59,.18);color:#8a6d12}
+.tag.qnt{background:rgba(0,78,67,.10);color:var(--evening-sea)}
+.kpi-side{background:linear-gradient(165deg,var(--evening-sea),var(--gable-green));border-radius:16px;
+  padding:22px 24px;color:#fff;display:flex;flex-direction:column}
+.kpi-side h4{font-size:15px;color:#fff;font-weight:600;margin-bottom:4px}
+.kpi-side .en{font-family:var(--font-en);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--anzac-soft)}
+.kpi-side .chartbox{flex:1;position:relative;margin:14px 0 4px;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.gauge{width:150px;height:150px;border-radius:50%;position:relative;
+  background:conic-gradient(var(--anzac) 0 100%, rgba(255,255,255,.12) 0);
+  display:grid;place-items:center}
+.gauge::before{content:"";position:absolute;inset:14px;border-radius:50%;background:var(--gable-green)}
+.gauge .gv{position:relative;text-align:center}
+.gauge .gv b{font-family:var(--font-en);font-size:34px;font-weight:700;color:#fff;display:block;line-height:1}
+.gauge .gv span{font-size:11px;color:var(--anzac-soft);font-weight:500}
+.gauge-cap{font-size:12px;color:#cfe0d9;text-align:center;margin-top:14px;line-height:1.5}
+.legend{display:flex;gap:8px;justify-content:center;margin-top:12px}
+.legend span{font-size:10px;color:#cfe0d9;display:flex;align-items:center;gap:5px}
+.legend i{width:9px;height:9px;border-radius:2px;display:inline-block}
+.benchmark{margin-top:auto;font-size:11px;color:#bcd0c9;line-height:1.5;border-top:1px solid rgba(255,255,255,.14);padding-top:12px}
+.benchmark b{color:var(--anzac-soft)}
+
+/* ============================ S6 impacts ============================ */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:14px}
+.block{border-radius:16px;padding:26px 28px;border:1px solid var(--line);background:var(--paper-2);box-shadow:var(--shadow-sm)}
+.block .bh{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.block .bh .n{width:44px;height:44px;border-radius:11px;background:linear-gradient(135deg,var(--anzac),#c79a26);display:grid;place-items:center;color:var(--gable-green);font-family:var(--font-en);font-weight:700;font-size:18px}
+.block .bh h3{font-size:18px;color:var(--evening-sea);font-weight:600}
+.block .bh .en{font-family:var(--font-en);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--highland);display:block;margin-top:2px}
+.steps{list-style:none;display:flex;flex-direction:column;gap:15px}
+.steps li{display:flex;gap:13px;font-size:14px;line-height:1.55;color:#3f4f4a}
+.steps li .si{flex:0 0 auto;width:24px;height:24px;border-radius:7px;background:rgba(0,78,67,.08);display:grid;place-items:center;margin-top:1px}
+.steps li .si svg{width:14px;height:14px;stroke:var(--evening-sea);fill:none;stroke-width:2}
+
+/* ============================ S7 documentation ============================ */
+.doc-hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:16px;align-items:center}
+.doc-text .lead{margin-bottom:22px}
+.cadence{display:flex;gap:14px;margin-top:6px}
+.cad{flex:1;background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:18px 16px;text-align:center;box-shadow:var(--shadow-sm)}
+.cad .ic{width:40px;height:40px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(135deg,var(--evening-sea),var(--gable-green));display:grid;place-items:center}
+.cad .ic svg{width:20px;height:20px;stroke:var(--anzac);fill:none;stroke-width:1.7}
+.cad h4{font-size:15px;color:var(--evening-sea);font-weight:600}
+.cad .en{font-family:var(--font-en);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--highland);margin-top:3px}
+.archive-visual{background:linear-gradient(165deg,var(--evening-sea),var(--gable-green));border-radius:20px;
+  padding:34px;color:#fff;position:relative;overflow:hidden;height:100%;display:flex;flex-direction:column;justify-content:center}
+.archive-visual .ring{position:absolute;border:1px solid rgba(222,184,59,.22);border-radius:50%}
+.flowline{display:flex;flex-direction:column;gap:0;position:relative;z-index:2}
+.fl-item{display:flex;align-items:center;gap:16px;padding:13px 0}
+.fl-item:not(:last-child){border-bottom:1px solid rgba(255,255,255,.1)}
+.fl-item .fn{width:34px;height:34px;border-radius:9px;background:rgba(222,184,59,.16);display:grid;place-items:center;flex:0 0 auto}
+.fl-item .fn svg{width:18px;height:18px;stroke:var(--anzac);fill:none;stroke-width:1.7}
+.fl-item .ft{font-size:14px;font-weight:500}
+.fl-item .ft .en{display:block;font-family:var(--font-en);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--anzac-soft);margin-top:2px}
+
+/* ============================ S8 report template ============================ */
+.report{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:14px}
+.rsec{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:20px;position:relative;box-shadow:var(--shadow-sm)}
+.rsec .rn{font-family:var(--font-en);font-size:11px;font-weight:700;color:var(--anzac);letter-spacing:.1em}
+.rsec h4{font-size:16px;color:var(--evening-sea);font-weight:600;margin:8px 0 8px}
+.rsec .en{font-family:var(--font-en);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--highland);display:block;margin-bottom:10px}
+.rsec ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.rsec ul li{font-size:12.5px;color:#52615c;line-height:1.4;padding-right:14px;position:relative}
+.rsec ul li::before{content:"";position:absolute;right:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--highland)}
+
+/* ============================ S9 closing ============================ */
+.closing{background:radial-gradient(130% 120% at 12% 0%, rgba(113,148,106,.28), transparent 50%),
+  linear-gradient(160deg,var(--gable-green),var(--evening-sea) 60%,#013b33);color:#fff;
+  align-items:center;justify-content:center}
+.closing .pattern{position:absolute;inset:0;opacity:.08;
+  background-image:radial-gradient(circle at 1px 1px, rgba(222,184,59,.9) 1.2px, transparent 0);background-size:34px 34px}
+.closing-inner{position:relative;z-index:3;text-align:center}
+.closing .logo{height:58px;margin-bottom:40px;opacity:.95}
+.closing .thanks{font-size:74px;font-weight:700;line-height:1.1;
+  background:linear-gradient(180deg,#fff,#cfe0d9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.closing .div{width:64px;height:3px;background:var(--anzac);margin:26px auto 22px;border-radius:2px}
+.closing .sub{color:#cfe0d9;font-size:17px;font-weight:400}
+.closing .dept{margin-top:8px;font-family:var(--font-en);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--highland)}
+.closing .emblem-watermark{position:absolute;right:-110px;bottom:-150px;height:600px;opacity:.05;z-index:1}
+</style>
+</head>
+<body>
+
+<!-- ============================ S1 — COVER ============================ -->
+<section class="slide cover">
+  <div class="pattern"></div><div class="glow"></div>
+  <img class="emblem-watermark" src="assets/ntsc-emblem-gold.svg" alt="">
+  <div class="cover-inner">
+    <img class="logo" src="assets/ntsc-logo.svg" alt="NTSC">
+    <div class="ar-mega">نموذج قياس <b>أثر المشاركات</b><br>في الفعاليات والمؤتمرات</div>
+    <div class="en-title">Participation Impact Measurement Model</div>
+    <div class="divider"></div>
+    <div class="dept">إدارة التواصل <span style="opacity:.4">|</span> <span class="en">Communications Department</span></div>
+  </div>
+  <div class="corner">
+    <span>المركز الوطني لسلامة النقل</span><span style="opacity:.4">·</span><span class="en">National Transport Safety Center</span>
+  </div>
+</section>
+
+<!-- ============================ S2 — OVERVIEW ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">الإطار العام<br><span class="en">The Mechanism</span></div></div>
+    <span class="snum">01 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">آلية قياس <span class="accent">أثر المشاركة</span></h2>
+    <p class="lead">منظومة مؤسسية لقياس فاعلية مشاركات المركز، تعتمد على منهجية ومعايير محددة تحوّل الحضور في الفعاليات إلى أثرٍ قابلٍ للقياس وقرارات قائمة على البيانات.</p>
+    <div class="grid3">
+      <div class="card"><div class="topstripe"></div><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12l4 4 6-8 4 5 4-6"/><circle cx="13" cy="8" r="1.2"/></svg></div>
+        <div class="idx">01</div><h3>قياس الأثر الفعلي</h3>
+        <p>تمكين الإدارة من قياس الأثر الحقيقي للمشاركة ومقارنة المُستهدف بالناتج الفعلي.</p>
+        <div class="en-tag">Measure Real Impact</div></div>
+      <div class="card"><div class="topstripe"></div><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h7M9 8h3"/></svg></div>
+        <div class="idx">02</div><h3>توثيق الدروس والتحسين</h3>
+        <p>توثيق الدروس المستفادة بشكلٍ منهجي ووضع خطط التحسين المناسبة للمشاركات القادمة.</p>
+        <div class="en-tag">Document & Improve</div></div>
+      <div class="card"><div class="topstripe"></div><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 12l5-3M12 12v6"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg></div>
+        <div class="idx">03</div><h3>دعم التسويق الاستراتيجي</h3>
+        <p>تعزيز الصورة الذهنية للمركز ودعم التسويق الاستراتيجي لحضوره المؤسسي.</p>
+        <div class="en-tag">Strategic Positioning</div></div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S3 — METHODOLOGY ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">المنهجية العامة<br><span class="en">The Methodology</span></div></div>
+    <span class="snum">02 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">منهجية القياس في <span class="accent">خمس مراحل</span></h2>
+    <p class="lead">مسارٌ متكامل ينقل المشاركة من جمع البيانات الأولية إلى أثرٍ موثّق وخطط تحسين قابلة للتنفيذ.</p>
+    <div class="journey">
+      <div class="jconn"></div>
+      <div class="jstep on"><div class="jnode"><span class="jnum">1</span><svg viewBox="0 0 24 24"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3z"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+        <h4>جمع المعلومات</h4><span class="en">Data Collection</span></div>
+      <div class="jstep"><div class="jnode"><span class="jnum">2</span><svg viewBox="0 0 24 24"><path d="M4 5h16M4 5v14h16V5M9 5v14M4 12h5"/></svg></div>
+        <h4>تحديد المخرجات</h4><span class="en">Define Outputs</span></div>
+      <div class="jstep"><div class="jnode"><span class="jnum">3</span><svg viewBox="0 0 24 24"><path d="M4 19V9M9 19V5M14 19v-7M19 19v-11"/></svg></div>
+        <h4>قياس المؤشرات</h4><span class="en">Measure KPIs</span></div>
+      <div class="jstep"><div class="jnode"><span class="jnum">4</span><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+        <h4>الأثر والدروس</h4><span class="en">Impact &amp; Insights</span></div>
+      <div class="jstep"><div class="jnode"><span class="jnum">5</span><svg viewBox="0 0 24 24"><path d="M12 20V10M12 10l-4 4M12 10l4 4M5 6h14"/></svg></div>
+        <h4>خطط التحسين</h4><span class="en">Optimization</span></div>
+    </div>
+    <div class="phase-flow">
+      <span>قبل المشاركة · التخطيط</span><span style="background:none;border:none;color:var(--anzac)">←</span>
+      <span>أثناء وبعد المشاركة · التنفيذ والقياس</span><span style="background:none;border:none;color:var(--anzac)">←</span>
+      <span>ما بعد المشاركة · التحسين</span>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S4 — DATA COLLECTION ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">المرحلة الأولى<br><span class="en">Phase 01 · Data Collection</span></div></div>
+    <span class="snum">03 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">جمع <span class="accent">المعلومات</span></h2>
+    <div class="cols2">
+      <div class="panel before">
+        <div class="ph"><div class="dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h3>قبل الحدث</h3><span class="en">Before the Event</span></div></div>
+        <ul class="flist">
+          <li>عدد الحضور المتوقع للفعالية</li>
+          <li>نوع الجمهور المستهدَف وطبيعته</li>
+          <li>مشاركة الجهات ذات العلاقة</li>
+          <li>نوعية التغطية الإعلامية المتوقعة</li>
+        </ul>
+      </div>
+      <div class="panel after">
+        <div class="ph"><div class="dot"><svg viewBox="0 0 24 24"><path d="M3 12l5 5L21 5"/></svg></div>
+          <div><h3>خلال وبعد الحدث</h3><span class="en">During &amp; After</span></div></div>
+        <ul class="flist">
+          <li>عدد زوّار الجناح الفعلي</li>
+          <li>تحليل عام لفئات زوّار الجناح</li>
+          <li>العدد الفعلي للجهات المشاركة ذات العلاقة</li>
+          <li>عدد التغطيات الإعلامية الخارجية للمركز</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
+      يتم جمع المعلومات يدويًا عن طريق فريق ممثّلي المركز خلال المشاركة.</div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S5 — OUTPUTS & KPIs ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">المرحلتان الثانية والثالثة<br><span class="en">Phase 02–03 · Outputs &amp; KPIs</span></div></div>
+    <span class="snum">04 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">المخرجات وقياس <span class="accent">المؤشرات</span></h2>
+    <div class="kpi-wrap">
+      <div class="kpi-list">
+        <div class="kpi-row"><div class="kic"><svg viewBox="0 0 24 24"><path d="M16 18a4 4 0 00-8 0M12 11a3 3 0 100-6 3 3 0 000 6M5 18a3 3 0 014-2.8M19 18a3 3 0 00-4-2.8"/></svg></div>
+          <div><h4>عدد زوّار الجناح</h4><div class="desc">٥٪ من الزوّار الفعليين (٥١ جناحًا أو أكثر + أكثر من منطقة عرض) · ١٠٪ (٥٠ جناحًا أو أقل + منطقة عرض واحدة)</div><span class="tag rel">Relative · نسبي</span></div>
+          <div class="kpi-target"><div class="v">5–10<small>%</small></div><div class="u">من الزوّار</div></div></div>
+        <div class="kpi-row"><div class="kic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h4>مدّة بقاء الزائر</h4><div class="desc">متوسط الزمن الذي يقضيه الزائر داخل جناح المركز</div><span class="tag qnt">Quantitative · كمّي</span></div>
+          <div class="kpi-target"><div class="v">2–5</div><div class="u">دقائق</div></div></div>
+        <div class="kpi-row"><div class="kic"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18" opacity=".0"/><circle cx="7" cy="8" r="3"/><circle cx="17" cy="16" r="3"/><path d="M9.5 9.5l5 5"/></svg></div>
+          <div><h4>الشراكات المستهدَفة</h4><div class="desc">عدد الشراكات النوعية المستهدَفة من المشاركة</div><span class="tag qnt">Quantitative · كمّي</span></div>
+          <div class="kpi-target"><div class="v">2</div><div class="u">شراكات</div></div></div>
+        <div class="kpi-row"><div class="kic"><svg viewBox="0 0 24 24"><path d="M3 11l16-6v14L3 13zM3 11v2M8 12.5V19l3 1v-6"/></svg></div>
+          <div><h4>التغطيات الإعلامية الخارجية</h4><div class="desc">تغطيات صادرة من جهاتٍ خارج المركز</div><span class="tag qnt">Quantitative · كمّي</span></div>
+          <div class="kpi-target"><div class="v">1</div><div class="u">تغطية</div></div></div>
+      </div>
+      <div class="kpi-side">
+        <h4>قياس الأداء</h4><span class="en">Target vs. Actual</span>
+        <div class="chartbox">
+          <div class="gauge"><div class="gv"><b>100<small style="font-size:18px">%</small></b><span>تحقيق المستهدف</span></div></div>
+          <div class="gauge-cap">يُقارَن الناتج الفعلي بالمُستهدف<br>لكل مؤشر على حِدة</div>
+          <div class="legend"><span><i style="background:var(--anzac)"></i>نسبي · Relative</span><span><i style="background:var(--highland)"></i>كمّي · Quantitative</span></div>
+        </div>
+        <div class="benchmark">تُحوَّل كل مخرجات المشاركة إلى مؤشرات قابلة للقياس — <b>نسبية</b> أو <b>كمّية</b> — لمقارنة الأداء الفعلي بالمستهدف.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S6 — IMPACTS & OPTIMIZATION ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">المرحلتان الرابعة والخامسة<br><span class="en">Phase 04–05 · Impact &amp; Optimization</span></div></div>
+    <span class="snum">05 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">الأثر والدروس <span class="accent">وخطط التحسين</span></h2>
+    <div class="duo">
+      <div class="block">
+        <div class="bh"><div class="n">4</div><div><h3>الأثر والدروس المستفادة</h3><span class="en">Impacts &amp; Insights</span></div></div>
+        <ul class="steps">
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M4 19V9M9 19V5M14 19v-7M19 19v-11"/></svg></span>تحليل الأداء العام ومقارنة المستهدَف بالناتج الفعلي.</li>
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M5 12l4 4L19 6"/></svg></span>تحديد نقاط القوة ووضع خطة لتطويرها.</li>
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg></span>تحديد التحديات ووضع خطة لمعالجتها.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <div class="bh"><div class="n">5</div><div><h3>خطط التحسين</h3><span class="en">Optimization Plans</span></div></div>
+        <ul class="steps">
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></span>تقديم التقرير النهائي لمدير عام الإدارة.</li>
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M12 20V8M12 8l-4 4M12 8l4 4M5 5h14"/></svg></span>وضع خطط لمعالجة التحديات وتحسين المشاركات المستقبلية.</li>
+          <li><span class="si"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span>تحديد الميزانيات المطلوبة (إن وُجدت).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S7 — DOCUMENTATION ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">الأرشفة المؤسسية<br><span class="en">Knowledge Management</span></div></div>
+    <span class="snum">06 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">إدارة المعلومات <span class="accent">والتوثيق</span></h2>
+    <div class="doc-hero">
+      <div class="doc-text">
+        <p class="lead">تُحفظ التقارير والدراسات التسويقية المُعدّة قبل كل مشاركة، وتُجمَّع في أرشيفٍ متكامل يُمكّن المركز من إجراء تحليلات تسويقية شاملة عبر أطرٍ زمنية أطول.</p>
+        <div class="cadence">
+          <div class="cad"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg></div><h4>سنوي</h4><span class="en">Annual</span></div>
+          <div class="cad"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12V5M12 12l5 3"/></svg></div><h4>ربع سنوي</h4><span class="en">Quarterly</span></div>
+          <div class="cad"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18"/></svg></div><h4>موسمي</h4><span class="en">Seasonal</span></div>
+        </div>
+      </div>
+      <div class="archive-visual">
+        <div class="ring" style="width:260px;height:260px;right:-80px;top:-80px"></div>
+        <div class="ring" style="width:380px;height:380px;right:-140px;top:-140px"></div>
+        <div class="flowline">
+          <div class="fl-item"><div class="fn"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 12h7M9 16h5"/></svg></div><div class="ft">تقارير ما بعد المشاركة<span class="en">Post-Participation Reports</span></div></div>
+          <div class="fl-item"><div class="fn"><svg viewBox="0 0 24 24"><path d="M4 19V9M9 19V5M14 19v-7M19 19v-11"/></svg></div><div class="ft">الدراسات التسويقية المسبقة<span class="en">Pre-Event Marketing Studies</span></div></div>
+          <div class="fl-item"><div class="fn"><svg viewBox="0 0 24 24"><path d="M4 7c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7"/></svg></div><div class="ft">أرشيف بيانات موحّد<span class="en">Unified Data Archive</span></div></div>
+          <div class="fl-item"><div class="fn"><svg viewBox="0 0 24 24"><path d="M3 12l4 4 6-8 4 5 4-6"/></svg></div><div class="ft">تحليلات تسويقية شاملة<span class="en">Comprehensive Analytics</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S8 — REPORT TEMPLATE ============================ -->
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">المُخرَج النهائي<br><span class="en">The Deliverable</span></div></div>
+    <span class="snum">07 — 07</span>
+  </div>
+  <div class="body">
+    <h2 class="title">تقرير <span class="accent">ما بعد المشاركة</span></h2>
+    <p class="lead">نموذجٌ موحّد يجمع نتائج المشاركة في وثيقةٍ واحدة تُرفع لمدير عام الإدارة وتُحفظ في الأرشيف المؤسسي.</p>
+    <div class="report">
+      <div class="rsec"><div class="rn">01</div><h4>بيانات المشاركة</h4><span class="en">Participation Data</span>
+        <ul><li>اسم الفعالية والجهة المنظِّمة</li><li>مكان وتاريخ المشاركة</li><li>نوع المشاركة</li><li>ممثلو المركز المشاركون</li></ul></div>
+      <div class="rsec"><div class="rn">02</div><h4>ملخص المشاركة</h4><span class="en">Summary</span>
+        <ul><li>نبذة مختصرة عن الفعالية</li><li>أهم الأنشطة التي نفّذها المركز</li><li>أبرز محطات الحضور</li></ul></div>
+      <div class="rsec"><div class="rn">03</div><h4>النتائج والمؤشرات</h4><span class="en">Results &amp; KPIs</span>
+        <ul><li>عدد زوّار الجناح</li><li>متوسط مدّة بقاء الزائر</li><li>الشراكات المستهدَفة</li><li>التغطيات الإعلامية الخارجية</li></ul></div>
+      <div class="rsec"><div class="rn">04</div><h4>الدروس المستفادة</h4><span class="en">Lessons Learned</span>
+        <ul><li>نقاط القوة</li><li>التحديات</li></ul></div>
+      <div class="rsec"><div class="rn">05</div><h4>التوصيات وخطة التحسين</h4><span class="en">Recommendations</span>
+        <ul><li>التوصيات التنفيذية</li><li>خطة التحسين للمشاركات القادمة</li><li>الميزانيات المطلوبة (إن وُجدت)</li></ul></div>
+      <div class="rsec" style="background:linear-gradient(160deg,var(--evening-sea),var(--gable-green));border:none">
+        <div class="rn" style="color:var(--anzac-soft)">✓</div>
+        <h4 style="color:#fff">جاهز للأرشفة</h4><span class="en" style="color:var(--anzac-soft)">Archive-Ready</span>
+        <p style="color:#cfe0d9;font-size:12.5px;line-height:1.6;margin-top:6px">وثيقة معتمدة تُغذّي التحليلات السنوية وتدعم اتخاذ القرار.</p></div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+
+<!-- ============================ S9 — CLOSING ============================ -->
+<section class="slide closing">
+  <div class="pattern"></div>
+  <img class="emblem-watermark" src="assets/ntsc-emblem-gold.svg" alt="">
+  <div class="closing-inner">
+    <img class="logo" src="assets/ntsc-logo.svg" alt="NTSC">
+    <div class="thanks">شـكـراً لـكـم</div>
+    <div class="div"></div>
+    <div class="sub">نقيس الأثر · نوثّق الدروس · نرتقي بالحضور</div>
+    <div class="dept">Communications Department — National Transport Safety Center</div>
+  </div>
+</section>
+
+</body>
+</html>

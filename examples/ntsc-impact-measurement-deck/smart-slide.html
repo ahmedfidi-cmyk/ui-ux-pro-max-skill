@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>SMART Slide — NTSC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--evening-sea:#004E43;--gable-green:#17332F;--highland:#71946A;--swirl:#D5D0C3;
+  --anzac:#DEB83B;--anzac-soft:#E9CE74;--ink:#11201D;--paper:#F6F4EE;--paper-2:#FBFAF6;
+  --line:rgba(0,78,67,.16);--line-soft:rgba(0,78,67,.10);--shadow-sm:0 12px 30px -18px rgba(7,40,35,.40);
+  --font-ar:'IBM Plex Sans Arabic',sans-serif;--font-en:'IBM Plex Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#2a2f2d;font-family:var(--font-ar);color:var(--ink);-webkit-font-smoothing:antialiased}
+body{display:flex;justify-content:center;padding:26px}
+.en{font-family:var(--font-en);direction:ltr;unicode-bidi:isolate}
+.slide{position:relative;width:1280px;height:720px;overflow:hidden;background:var(--paper);
+  display:flex;flex-direction:column;box-shadow:0 40px 90px -40px rgba(0,0,0,.7)}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:26px 56px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--evening-sea)}
+.eyebrow .bar{width:34px;height:2px;background:var(--anzac)}
+.eyebrow .kicker{font-size:13px;font-weight:600}
+.eyebrow .kicker .en{font-size:11px;color:var(--highland);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.snum{font-family:var(--font-en);font-size:12px;letter-spacing:.18em;color:var(--highland);font-weight:600}
+.body{flex:1;padding:16px 56px 10px;display:flex;flex-direction:column;min-height:0}
+h2.title{font-size:32px;font-weight:700;color:var(--evening-sea);line-height:1.18}
+.title .accent{color:var(--anzac)}
+.lead{font-size:15px;line-height:1.6;color:#3a4a45;max-width:78ch;margin-top:6px}
+.footer{display:flex;align-items:center;justify-content:space-between;padding:0 56px 22px;color:var(--highland);font-size:11.5px;position:relative}
+.footer .en{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(113,148,106,.85)}
+.footer .rule{position:absolute;left:56px;right:56px;border-top:1px solid var(--line-soft);margin-top:-14px}
+
+.smart-row{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:22px}
+.pillar{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:22px 18px;
+  box-shadow:var(--shadow-sm);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.pillar .badge{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;margin-bottom:16px;
+  font-family:var(--font-en);font-size:30px;font-weight:700;color:#fff}
+.pillar h3{font-size:18px;color:var(--evening-sea);font-weight:700;margin-bottom:3px}
+.pillar .en-l{font-family:var(--font-en);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--highland);font-weight:600;margin-bottom:12px}
+.pillar p{font-size:12.5px;line-height:1.55;color:#52615c}
+.pillar .q{margin-top:auto;padding-top:12px;border-top:1px solid var(--line-soft);font-size:11.5px;color:var(--evening-sea);font-weight:500}
+
+.kpi-strip{margin-top:20px;background:linear-gradient(160deg,var(--evening-sea),var(--gable-green));
+  border-radius:16px;padding:16px 26px;display:flex;align-items:center;gap:24px;color:#fff}
+.kpi-strip .lab{font-size:13px;font-weight:600;white-space:nowrap}
+.kpi-strip .lab .en{display:block;font-size:9px;color:var(--anzac-soft);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+.kpi-strip .items{display:flex;gap:14px;flex:1;justify-content:space-between}
+.kchip{background:rgba(255,255,255,.07);border:1px solid rgba(222,184,59,.25);border-radius:11px;
+  padding:9px 16px;display:flex;flex-direction:column;align-items:center;gap:2px;flex:1}
+.kchip .v{font-family:var(--font-en);font-size:19px;font-weight:700;color:var(--anzac-soft);direction:ltr}
+.kchip .n{font-size:11px;color:#dfeae3}
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="topbar">
+    <div class="eyebrow"><span class="bar"></span><div class="kicker">أداة التخطيط<br><span class="en">Goal-Setting Tool</span></div></div>
+    <span class="snum">SMART</span>
+  </div>
+  <div class="body">
+    <h2 class="title">صياغة أهداف المشاركة وفق <span class="accent">منهجية SMART</span></h2>
+    <p class="lead">قبل كل مشاركة، تُصاغ الأهداف وفق خمسة معايير تضمن وضوحها وقابليتها للقياس وربطها بمؤشرات الأثر المعتمدة.</p>
+    <div class="smart-row">
+      <div class="pillar"><div class="badge" style="background:linear-gradient(135deg,#E1B92E,#c79a26);color:#17332F">S</div>
+        <h3>محدد</h3><div class="en-l">Specific</div>
+        <p>هدفٌ واضح ودقيق يحدد ماذا نريد تحقيقه ومَن المعنيّ.</p>
+        <div class="q">ماذا نريد تحقيقه بالضبط؟</div></div>
+      <div class="pillar"><div class="badge" style="background:linear-gradient(135deg,#004E43,#17332F)">M</div>
+        <h3>قابل للقياس</h3><div class="en-l">Measurable</div>
+        <p>مؤشر ورقم مستهدف يُثبت تحقّق الهدف بالأرقام.</p>
+        <div class="q">ما المؤشر والرقم المستهدف؟</div></div>
+      <div class="pillar"><div class="badge" style="background:linear-gradient(135deg,#71946A,#5a7a54)">A</div>
+        <h3>قابل للتحقيق</h3><div class="en-l">Achievable</div>
+        <p>هدفٌ واقعي تتوفر له الموارد من فريق وميزانية ووقت.</p>
+        <div class="q">هل الموارد كافية؟</div></div>
+      <div class="pillar"><div class="badge" style="background:linear-gradient(135deg,#17332F,#0a221e)">R</div>
+        <h3>ذو صلة</h3><div class="en-l">Relevant</div>
+        <p>مرتبطٌ بأولويات المركز وصورته الذهنية الإستراتيجية.</p>
+        <div class="q">كيف يخدم أهداف المركز؟</div></div>
+      <div class="pillar"><div class="badge" style="background:linear-gradient(135deg,#DEB83B,#c79a26);color:#17332F">T</div>
+        <h3>محدد زمنياً</h3><div class="en-l">Time-bound</div>
+        <p>له إطار زمني وموعد نهائي واضح للتنفيذ والقياس.</p>
+        <div class="q">ما الموعد النهائي للقياس؟</div></div>
+    </div>
+    <div class="kpi-strip">
+      <div class="lab">يُربط كل هدف<br>بمؤشر معتمد<span class="en">Linked KPIs</span></div>
+      <div class="items">
+        <div class="kchip"><span class="v">5–10%</span><span class="n">زوّار الجناح</span></div>
+        <div class="kchip"><span class="v">2–5</span><span class="n">دقائق بقاء الزائر</span></div>
+        <div class="kchip"><span class="v">2</span><span class="n">شراكات مستهدَفة</span></div>
+        <div class="kchip"><span class="v">1</span><span class="n">تغطية إعلامية خارجية</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><div class="rule"></div><span>المركز الوطني لسلامة النقل · إدارة التواصل</span><span class="en">NTSC — Impact Measurement Model</span></div>
+</section>
+</body>
+</html>
